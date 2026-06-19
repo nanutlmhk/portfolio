@@ -72,7 +72,7 @@ function App() {
   const content = portfolioContent[locale]
 
   return (
-    <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,_rgba(34,211,238,0.13),_transparent_30%),radial-gradient(circle_at_top_right,_rgba(14,165,233,0.12),_transparent_24%),linear-gradient(180deg,_#f8fcff_0%,_#ffffff_28%,_#f8fafc_100%)] text-slate-800 transition-colors dark:bg-[radial-gradient(circle_at_top_left,_rgba(34,211,238,0.12),_transparent_24%),radial-gradient(circle_at_top_right,_rgba(14,165,233,0.14),_transparent_20%),linear-gradient(180deg,_#020617_0%,_#0f172a_34%,_#020617_100%)] dark:text-slate-100">
+    <div className="min-h-screen overflow-x-hidden bg-[radial-gradient(circle_at_top_left,_rgba(34,211,238,0.13),_transparent_30%),radial-gradient(circle_at_top_right,_rgba(14,165,233,0.12),_transparent_24%),linear-gradient(180deg,_#f8fcff_0%,_#ffffff_28%,_#f8fafc_100%)] text-slate-800 transition-colors dark:bg-[radial-gradient(circle_at_top_left,_rgba(34,211,238,0.12),_transparent_24%),radial-gradient(circle_at_top_right,_rgba(14,165,233,0.14),_transparent_20%),linear-gradient(180deg,_#020617_0%,_#0f172a_34%,_#020617_100%)] dark:text-slate-100">
       <Header
         navItems={content.navItems}
         resumeButton={content.resumeButton}
@@ -84,12 +84,12 @@ function App() {
       />
 
       <main>
-        <section id="home" className="mx-auto max-w-7xl px-6 pb-20 pt-16 lg:px-8 lg:pb-28 lg:pt-24">
+        <section id="home" className="mx-auto max-w-7xl px-4 pb-14 pt-10 sm:px-6 sm:pt-14 lg:px-8 lg:pb-28 lg:pt-24">
           <div className="max-w-5xl">
-            <h1 className="max-w-4xl text-4xl font-semibold tracking-tight text-slate-950 dark:text-white md:text-6xl">
+            <h1 className="max-w-4xl text-3xl font-semibold leading-tight tracking-tight text-slate-950 dark:text-white sm:text-4xl md:text-6xl">
               {content.hero.title}
             </h1>
-            <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-600 dark:text-slate-300">
+            <p className="mt-5 max-w-3xl text-base leading-7 text-slate-600 dark:text-slate-300 sm:text-lg sm:leading-8">
               {content.hero.description}
             </p>
 
@@ -104,10 +104,10 @@ function App() {
               ))}
             </div>
 
-            <div className="mt-8 flex flex-wrap gap-4">
+            <div className="mt-8 grid gap-3 sm:flex sm:flex-wrap sm:gap-4">
               <a
                 href="#experience"
-                className="rounded-full bg-slate-950 px-6 py-3 text-sm font-semibold text-white transition hover:bg-slate-800 dark:bg-cyan-400 dark:text-slate-950 dark:hover:bg-cyan-300"
+                className="rounded-full bg-slate-950 px-6 py-3 text-center text-sm font-semibold text-white transition hover:bg-slate-800 dark:bg-cyan-400 dark:text-slate-950 dark:hover:bg-cyan-300"
               >
                 {content.hero.primaryCta}
               </a>
@@ -115,7 +115,7 @@ function App() {
                 href="/assets/Nanut_Lertmahakiat_Resume_CV2026.pdf"
                 target="_blank"
                 rel="noreferrer"
-                className="rounded-full border border-slate-200 bg-white px-6 py-3 text-sm font-semibold text-slate-900 transition hover:border-cyan-300 hover:bg-cyan-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:bg-slate-800"
+                className="rounded-full border border-slate-200 bg-white px-6 py-3 text-center text-sm font-semibold text-slate-900 transition hover:border-cyan-300 hover:bg-cyan-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:bg-slate-800"
               >
                 {content.hero.secondaryCta}
               </a>
@@ -161,7 +161,7 @@ function App() {
           </div>
         </section>
 
-        <section id="about" className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
+        <section id="about" className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
           <SectionHeading
             eyebrow={content.about.eyebrow}
             title={content.about.title}
@@ -169,18 +169,18 @@ function App() {
           />
 
           <div className="mt-12 grid gap-8 lg:grid-cols-[1.08fr_0.92fr]">
-            <div className="rounded-[2rem] border border-slate-200/80 bg-white p-8 shadow-[0_24px_70px_-40px_rgba(15,23,42,0.3)] dark:border-slate-800 dark:bg-slate-900">
+            <div className="rounded-[1.75rem] border border-slate-200/80 bg-white p-5 shadow-[0_24px_70px_-40px_rgba(15,23,42,0.3)] dark:border-slate-800 dark:bg-slate-900 sm:rounded-[2rem] sm:p-8">
               {content.about.paragraphs.map((paragraph) => (
                 <p
                   key={paragraph}
-                  className="text-lg leading-8 text-slate-700 dark:text-slate-200 [&:not(:first-child)]:mt-6"
+                  className="text-base leading-7 text-slate-700 dark:text-slate-200 sm:text-lg sm:leading-8 [&:not(:first-child)]:mt-5 sm:[&:not(:first-child)]:mt-6"
                 >
                   {paragraph}
                 </p>
               ))}
             </div>
 
-            <div className="rounded-[2rem] border border-slate-200/80 bg-slate-950 p-8 text-white shadow-[0_24px_70px_-40px_rgba(15,23,42,0.45)] dark:border-slate-800 dark:bg-slate-900">
+            <div className="rounded-[1.75rem] border border-slate-200/80 bg-slate-950 p-5 text-white shadow-[0_24px_70px_-40px_rgba(15,23,42,0.45)] dark:border-slate-800 dark:bg-slate-900 sm:rounded-[2rem] sm:p-8">
               <p className="text-sm font-semibold uppercase tracking-[0.28em] text-cyan-300">
                 {content.about.expertiseTitle}
               </p>
@@ -206,7 +206,7 @@ function App() {
           </div>
         </section>
 
-        <section id="experience" className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
+        <section id="experience" className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
           <SectionHeading
             eyebrow={content.experience.eyebrow}
             title={content.experience.title}
@@ -214,8 +214,8 @@ function App() {
           />
 
           <div className="mt-12 grid gap-8 xl:grid-cols-[0.88fr_1.12fr]">
-            <div className="rounded-[2rem] border border-slate-200/80 bg-white p-5 shadow-[0_24px_70px_-42px_rgba(15,23,42,0.34)] dark:border-slate-800 dark:bg-slate-900">
-              <div className="rounded-[1.5rem] border border-slate-100 bg-slate-50 p-5 dark:border-slate-800 dark:bg-slate-950/50">
+            <div className="rounded-[1.75rem] border border-slate-200/80 bg-white p-4 shadow-[0_24px_70px_-42px_rgba(15,23,42,0.34)] dark:border-slate-800 dark:bg-slate-900 sm:rounded-[2rem] sm:p-5">
+              <div className="rounded-[1.25rem] border border-slate-100 bg-slate-50 p-4 dark:border-slate-800 dark:bg-slate-950/50 sm:rounded-[1.5rem] sm:p-5">
                 <p className="text-sm font-semibold uppercase tracking-[0.22em] text-cyan-700 dark:text-cyan-300">
                   {content.experience.imageTitle}
                 </p>
@@ -241,7 +241,7 @@ function App() {
           </div>
         </section>
 
-        <section id="projects" className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
+        <section id="projects" className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
           <SectionHeading
             eyebrow={content.projectsSection.eyebrow}
             title={content.projectsSection.title}
@@ -259,8 +259,8 @@ function App() {
           </div>
         </section>
 
-        <section id="contact" className="px-6 py-20 lg:px-8">
-          <div className="mx-auto max-w-7xl rounded-[2.5rem] border border-cyan-100 bg-[linear-gradient(135deg,_rgba(8,47,73,0.96),_rgba(14,116,144,0.88))] p-8 text-white shadow-[0_30px_90px_-45px_rgba(8,145,178,0.45)] dark:border-slate-800 dark:bg-[linear-gradient(135deg,_rgba(8,47,73,0.9),_rgba(12,74,110,0.96))] lg:p-12">
+        <section id="contact" className="px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
+          <div className="mx-auto max-w-7xl rounded-[2rem] border border-cyan-100 bg-[linear-gradient(135deg,_rgba(8,47,73,0.96),_rgba(14,116,144,0.88))] p-5 text-white shadow-[0_30px_90px_-45px_rgba(8,145,178,0.45)] dark:border-slate-800 dark:bg-[linear-gradient(135deg,_rgba(8,47,73,0.9),_rgba(12,74,110,0.96))] sm:rounded-[2.5rem] sm:p-8 lg:p-12">
             <SectionHeading
               eyebrow={content.contact.eyebrow}
               title={content.contact.title}

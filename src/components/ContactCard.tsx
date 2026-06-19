@@ -39,13 +39,13 @@ function ContactIcon({ title }: { title: string }) {
 
 export function ContactCard({ action }: ContactCardProps) {
   return (
-    <article className="rounded-[1.5rem] border border-white/70 bg-white/90 p-5 shadow-[0_18px_44px_-32px_rgba(15,23,42,0.32)] dark:border-slate-700 dark:bg-slate-900/90">
+    <article className="rounded-[1.25rem] border border-white/70 bg-white/90 p-4 shadow-[0_18px_44px_-32px_rgba(15,23,42,0.32)] dark:border-slate-700 dark:bg-slate-900/90 sm:rounded-[1.5rem] sm:p-5">
       <div className="flex items-start gap-4">
-        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-cyan-500/12 text-cyan-700 dark:bg-cyan-400/15 dark:text-cyan-300">
+        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-cyan-500/12 text-cyan-700 dark:bg-cyan-400/15 dark:text-cyan-300 sm:h-11 sm:w-11 sm:rounded-2xl">
           <ContactIcon title={action.title} />
         </div>
         <div className="min-w-0">
-          <h3 className="text-lg font-semibold text-slate-950 dark:text-white">{action.title}</h3>
+          <h3 className="text-base font-semibold text-slate-950 dark:text-white sm:text-lg">{action.title}</h3>
           <p className="mt-1 break-all text-sm leading-6 text-slate-600 dark:text-slate-300">
             {action.description}
           </p>
