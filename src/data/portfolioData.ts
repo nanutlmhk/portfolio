@@ -571,7 +571,7 @@ export const portfolioContent: Record<'en' | 'th', PortfolioContent> = {
         'สามารถติดต่อผมได้โดยตรงสำหรับงานประจำ งาน consulting หรือการพูดคุยด้าน healthcare technology',
       actions: [
         {
-          title: 'Nanut Lertmahakiat',
+          title: 'ณนัทธ์ เลิศมหาเกียรติ',
           description: 'nanut.lertmahakiat@protonmail.com',
           href: 'mailto:nanut.lertmahakiat@protonmail.com',
           cta: 'ส่งอีเมล',
