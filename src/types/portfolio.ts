@@ -83,6 +83,8 @@ export type PortfolioContent = {
   platforms: {
     eyebrow: string
     title: string
+    note: string
+    artLabel: string
     rows: PlatformRow[]
   }
   experience: {

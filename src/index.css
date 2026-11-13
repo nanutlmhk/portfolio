@@ -149,6 +149,177 @@ body {
   stroke: var(--twin-edge);
 }
 
+/* Sections fade up as they enter the viewport (enabled by App.tsx). */
+.js-reveal .reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
+}
+
+.js-reveal .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.js-reveal .reveal .stagger > * {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease,
+    border-color 0.2s;
+}
+
+.js-reveal .reveal.is-visible .stagger > * {
+  opacity: 1;
+  transform: none;
+}
+
+.stagger > *:nth-child(2) {
+  transition-delay: 0.07s;
+}
+
+.stagger > *:nth-child(3) {
+  transition-delay: 0.14s;
+}
+
+.stagger > *:nth-child(4) {
+  transition-delay: 0.21s;
+}
+
+.stagger > *:nth-child(5) {
+  transition-delay: 0.28s;
+}
+
+.stagger > *:nth-child(6) {
+  transition-delay: 0.35s;
+}
+
+.stagger > *:nth-child(7) {
+  transition-delay: 0.42s;
+}
+
+/* Platform card thumbnails (PlatformArt.tsx). */
+.art-card:hover {
+  border-color: var(--accent);
+}
+
+.art-photo {
+  filter: saturate(0.85);
+}
+
+.art-draw {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: art-draw 7s linear infinite;
+}
+
+.art-cursor {
+  animation: art-cursor 7s linear infinite;
+}
+
+.art-packet {
+  animation: art-packet 2.6s ease-in-out infinite;
+}
+
+.art-row {
+  opacity: 0;
+  animation: art-row 5s ease-out infinite;
+}
+
+.art-progress {
+  transform-origin: 24px 0;
+  animation: art-progress 5s ease-out infinite;
+}
+
+.art-scan {
+  animation: art-scan 3.2s ease-in-out infinite;
+}
+
+.art-detect {
+  animation: pulse 1.6s ease-in-out infinite;
+}
+
+.art-redact {
+  animation: pulse 3.2s ease-in-out infinite;
+}
+
+@keyframes art-draw {
+  70%,
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes art-cursor {
+  from {
+    transform: translateX(12px);
+  }
+
+  70%,
+  100% {
+    transform: translateX(308px);
+  }
+}
+
+@keyframes art-packet {
+  0% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+
+  15%,
+  80% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateX(74px);
+    opacity: 0;
+  }
+}
+
+@keyframes art-row {
+  0% {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+
+  12%,
+  92% {
+    opacity: 1;
+    transform: none;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes art-progress {
+  from {
+    transform: scaleX(0);
+  }
+
+  80%,
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes art-scan {
+  0%,
+  100% {
+    transform: translateY(18px);
+  }
+
+  50% {
+    transform: translateY(122px);
+  }
+}
+
 .flow-line {
   stroke-dasharray: 3 5;
   animation: flow 1.6s linear infinite;
@@ -176,7 +347,30 @@ body {
   }
 
   .flow-line,
-  .pulse-dot {
+  .pulse-dot,
+  .art-draw,
+  .art-cursor,
+  .art-packet,
+  .art-row,
+  .art-progress,
+  .art-scan,
+  .art-detect,
+  .art-redact {
     animation: none;
+  }
+
+  .art-draw {
+    stroke-dashoffset: 0;
+  }
+
+  .art-row {
+    opacity: 1;
+  }
+
+  .js-reveal .reveal,
+  .js-reveal .reveal .stagger > * {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 }
