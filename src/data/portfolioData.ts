@@ -17,15 +17,18 @@ const CLIENTS = [
   'ESM',
   'Meditop',
   'Siam SCI',
-  'Siam International Medical Equipment',
   'CV Lab Thailand',
-  'Porjai',
 ]
 
 // Logo files live in public/logos as transparent PNG or SVG. Dark mode renders them in one light colour (see .logo in index.css).
 // A name without an entry here is shown as text only.
 export const LOGOS: Record<string, string> = {
   BDMS: 'bdms.svg',
+  ESM: 'esm.png',
+  Meditop: 'meditop.png',
+  'Siam SCI': 'siam-sci.png',
+  'CV Lab Thailand': 'cv-lab.png',
+  'King Chulalongkorn Memorial Hospital (KCMH)': 'kcmh.png',
   'Neurological Institute of Thailand (NIT)': 'nit.png',
   'Vimut Hospital': 'vimut.svg',
   'Lampang Hospital': 'lampang-hospital.png',
@@ -38,7 +41,13 @@ export const LOGOS: Record<string, string> = {
   Getinge: 'getinge.svg',
 }
 
-const HOSPITALS = ['Neurological Institute of Thailand (NIT)', 'Vimut Hospital', 'Lampang Hospital', 'WIH International Hospital']
+const HOSPITALS = [
+  'King Chulalongkorn Memorial Hospital (KCMH)',
+  'Neurological Institute of Thailand (NIT)',
+  'Vimut Hospital',
+  'Lampang Hospital',
+  'WIH International Hospital',
+]
 
 const DEVICE_VENDORS = ['Dräger', 'GE HealthCare', 'Philips', 'B. Braun', 'Fresenius', 'Getinge']
 
