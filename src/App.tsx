@@ -186,18 +186,17 @@ function App() {
                 <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
                   {group.names.map((name) =>
                     LOGOS[name] ? (
-                      <li key={name} className="flex flex-col border border-line bg-panel">
-                        <div className="flex h-24 items-center justify-center bg-white p-2">
-                          <img
-                            src={`/logos/${LOGOS[name]}`}
-                            alt={`${name} logo`}
-                            loading="lazy"
-                            className="max-h-full max-w-[78%] object-contain"
-                          />
-                        </div>
-                        <p className="border-t border-line px-3 py-2 text-center text-xs font-medium leading-5 text-body">
-                          {name}
-                        </p>
+                      <li
+                        key={name}
+                        title={name}
+                        className="logo-tile flex h-24 items-center justify-center border border-line bg-panel px-5 py-4"
+                      >
+                        <img
+                          src={`/logos/${LOGOS[name]}`}
+                          alt={name}
+                          loading="lazy"
+                          className="logo max-h-full max-w-[68%] object-contain"
+                        />
                       </li>
                     ) : (
                       <li

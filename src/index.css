@@ -95,6 +95,23 @@ body {
   background: var(--accent-soft);
 }
 
+/* Logos are transparent files. Light mode shows their own colours on the light panel.
+   Dark mode renders every logo in one light colour so dark brand colours stay legible. */
+.logo {
+  transition:
+    opacity 0.2s,
+    filter 0.2s;
+}
+
+:root.dark .logo {
+  filter: brightness(0) invert(1);
+  opacity: 0.72;
+}
+
+:root.dark .logo-tile:hover .logo {
+  opacity: 1;
+}
+
 .flow-line {
   stroke-dasharray: 3 5;
   animation: flow 1.6s linear infinite;

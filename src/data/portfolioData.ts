@@ -22,16 +22,17 @@ const CLIENTS = [
   'Porjai',
 ]
 
-// Logo files live in public/logos. A name without an entry here is shown as text only.
+// Logo files live in public/logos as transparent PNG or SVG. Dark mode renders them in one light colour (see .logo in index.css).
+// A name without an entry here is shown as text only.
 export const LOGOS: Record<string, string> = {
-  'Neurological Institute of Thailand (NIT)': 'nit.jpg',
+  'Neurological Institute of Thailand (NIT)': 'nit.png',
   'Vimut Hospital': 'vimut.svg',
-  'Lampang Hospital': 'lampang-hospital.jpg',
+  'Lampang Hospital': 'lampang-hospital.png',
   'WIH International Hospital': 'wih.png',
-  'Dräger': 'draeger.webp',
+  'Dräger': 'draeger.png',
   'GE HealthCare': 'ge-healthcare.svg',
   Philips: 'philips.png',
-  'B. Braun': 'bbraun.jpg',
+  'B. Braun': 'bbraun.png',
   Fresenius: 'fresenius.svg',
   Getinge: 'getinge.svg',
 }
