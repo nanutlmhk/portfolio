@@ -76,6 +76,11 @@ export type PortfolioContent = {
     title: string
     rows: EvidenceRow[]
   }
+  management: {
+    eyebrow: string
+    title: string
+    rows: EvidenceRow[]
+  }
   platforms: {
     eyebrow: string
     title: string

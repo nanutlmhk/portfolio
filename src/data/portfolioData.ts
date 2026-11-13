@@ -25,6 +25,7 @@ const CLIENTS = [
 // Logo files live in public/logos as transparent PNG or SVG. Dark mode renders them in one light colour (see .logo in index.css).
 // A name without an entry here is shown as text only.
 export const LOGOS: Record<string, string> = {
+  BDMS: 'bdms.svg',
   'Neurological Institute of Thailand (NIT)': 'nit.png',
   'Vimut Hospital': 'vimut.svg',
   'Lampang Hospital': 'lampang-hospital.png',
@@ -55,6 +56,7 @@ export const portfolioContent: Record<'en' | 'th', PortfolioContent> = {
   en: {
     navItems: [
       { label: 'What I bring', href: '#bring' },
+      { label: 'Management', href: '#management' },
       { label: 'Platforms', href: '#platforms' },
       { label: 'Experience', href: '#experience' },
       { label: 'Skills', href: '#skills' },
@@ -120,6 +122,37 @@ export const portfolioContent: Record<'en' | 'th', PortfolioContent> = {
         {
           area: 'Team leadership',
           evidence: 'Technical Project Leader; led multidisciplinary hospital and vendor teams',
+        },
+      ],
+    },
+    management: {
+      eyebrow: 'Management',
+      title: 'How I run the work, not just the systems.',
+      rows: [
+        {
+          area: 'Stakeholder liaison',
+          evidence:
+            'The link between hospital executives, physicians, nursing, hospital IT, biomedical engineering and vendors.',
+        },
+        {
+          area: 'TOR and vendor management',
+          evidence: 'Write terms of reference, review vendor proposals and hold vendors to acceptance gates.',
+        },
+        {
+          area: 'Requirements and decisions',
+          evidence: 'Turn clinical needs into clear requirements and make the scope and priority decisions.',
+        },
+        {
+          area: 'Backlog management',
+          evidence: 'Own and prioritise the backlog across products, integrations and support work.',
+        },
+        {
+          area: 'Team management',
+          evidence: 'Lead multidisciplinary hospital and vendor teams from planning through go-live and support.',
+        },
+        {
+          area: 'Training and handover',
+          evidence: 'Train users and support teams, and write the handover guides they keep using.',
         },
       ],
     },
@@ -233,6 +266,7 @@ export const portfolioContent: Record<'en' | 'th', PortfolioContent> = {
   th: {
     navItems: [
       { label: 'จุดแข็ง', href: '#bring' },
+      { label: 'การบริหาร', href: '#management' },
       { label: 'แพลตฟอร์ม', href: '#platforms' },
       { label: 'ประสบการณ์', href: '#experience' },
       { label: 'ทักษะ', href: '#skills' },
@@ -298,6 +332,36 @@ export const portfolioContent: Record<'en' | 'th', PortfolioContent> = {
         {
           area: 'การนำทีม',
           evidence: 'Technical Project Leader นำทีมสหสาขาทั้งฝั่งโรงพยาบาลและ vendor',
+        },
+      ],
+    },
+    management: {
+      eyebrow: 'การบริหารจัดการ',
+      title: 'ผมบริหารงาน ไม่ใช่แค่ดูแลระบบ',
+      rows: [
+        {
+          area: 'การประสานงานผู้มีส่วนได้ส่วนเสีย',
+          evidence: 'เป็นตัวกลางระหว่างผู้บริหารโรงพยาบาล แพทย์ พยาบาล ทีมไอที วิศวกรชีวการแพทย์ และ vendor',
+        },
+        {
+          area: 'TOR และการบริหาร vendor',
+          evidence: 'เขียน TOR ตรวจสอบข้อเสนอของ vendor และกำกับให้ vendor ผ่าน acceptance gate',
+        },
+        {
+          area: 'Requirement และการตัดสินใจ',
+          evidence: 'แปลงความต้องการทางคลินิกเป็น requirement ที่ชัดเจน และตัดสินใจเรื่องขอบเขตและลำดับความสำคัญ',
+        },
+        {
+          area: 'การบริหาร backlog',
+          evidence: 'ดูแลและจัดลำดับ backlog ของผลิตภัณฑ์ งาน integration และงาน support',
+        },
+        {
+          area: 'การบริหารทีม',
+          evidence: 'นำทีมสหสาขาทั้งฝั่งโรงพยาบาลและ vendor ตั้งแต่วางแผนจนถึง go-live และ support',
+        },
+        {
+          area: 'การฝึกอบรมและส่งมอบงาน',
+          evidence: 'ฝึกอบรมผู้ใช้งานและทีม support และเขียนคู่มือส่งมอบงานที่ใช้งานได้จริง',
         },
       ],
     },

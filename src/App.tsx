@@ -68,7 +68,7 @@ function App() {
   }, [locale])
 
   const content = portfolioContent[locale]
-  const { hero, bring, platforms, experience, clients, skills, contact } = content
+  const { hero, bring, management, platforms, experience, clients, skills, contact } = content
 
   return (
     <div className="min-h-screen overflow-x-hidden">
@@ -146,7 +146,18 @@ function App() {
           </div>
         </Section>
 
-        <Section id="platforms" index="02" eyebrow={platforms.eyebrow} title={platforms.title}>
+        <Section id="management" index="02" eyebrow={management.eyebrow} title={management.title}>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {management.rows.map((row) => (
+              <article key={row.area} className="border border-line border-l-2 border-l-accent bg-panel p-4 sm:p-5">
+                <h3 className="text-base font-semibold text-ink">{row.area}</h3>
+                <p className="mt-2 text-sm leading-6 text-body">{row.evidence}</p>
+              </article>
+            ))}
+          </div>
+        </Section>
+
+        <Section id="platforms" index="03" eyebrow={platforms.eyebrow} title={platforms.title}>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {platforms.rows.map((row) => (
               <article key={row.platform} className="border border-line bg-panel">
@@ -162,7 +173,7 @@ function App() {
           </div>
         </Section>
 
-        <Section id="experience" index="03" eyebrow={experience.eyebrow} title={experience.title}>
+        <Section id="experience" index="04" eyebrow={experience.eyebrow} title={experience.title}>
           <ol className="border-l border-line">
             {experience.roles.map((role) => (
               <li key={role.organization} className="relative pb-10 pl-6 last:pb-0 sm:pl-8">
@@ -178,7 +189,7 @@ function App() {
           </ol>
         </Section>
 
-        <Section id="clients" index="04" eyebrow={clients.eyebrow} title={clients.title}>
+        <Section id="clients" index="05" eyebrow={clients.eyebrow} title={clients.title}>
           <div className="grid gap-8">
             {clients.groups.map((group) => (
               <div key={group.kind}>
@@ -213,7 +224,7 @@ function App() {
           </div>
         </Section>
 
-        <Section id="skills" index="05" eyebrow={skills.eyebrow} title={skills.title}>
+        <Section id="skills" index="06" eyebrow={skills.eyebrow} title={skills.title}>
           <div className="grid gap-4 lg:grid-cols-[1.3fr_0.7fr]">
             <div className="border border-line bg-panel">
               {skills.groups.map((group) => (
@@ -246,7 +257,7 @@ function App() {
           </div>
         </Section>
 
-        <Section id="contact" index="06" eyebrow={contact.eyebrow} title={contact.title}>
+        <Section id="contact" index="07" eyebrow={contact.eyebrow} title={contact.title}>
           <div className="grid gap-4 md:grid-cols-3">
             {contact.actions.map((action) => (
               <a
