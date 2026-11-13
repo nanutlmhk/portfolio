@@ -167,6 +167,8 @@ export const portfolioContent: Record<'en' | 'th', PortfolioContent> = {
     platforms: {
       eyebrow: 'Platform portfolio',
       title: 'Every platform with its real status.',
+      note: 'The thumbnails are illustrations, not screenshots, so no patient data is shown. The Wallflower image is a real screenshot of synthetic data.',
+      artLabel: 'illustration',
       rows: [
         {
           platform: 'OT charting + device middleware',
@@ -375,6 +377,8 @@ export const portfolioContent: Record<'en' | 'th', PortfolioContent> = {
     platforms: {
       eyebrow: 'Platform portfolio',
       title: 'ทุกแพลตฟอร์มแสดงสถานะตามจริง',
+      note: 'ภาพประกอบเป็นภาพวาด ไม่ใช่ภาพหน้าจอจริง จึงไม่มีข้อมูลผู้ป่วย ส่วนภาพ Wallflower เป็นภาพหน้าจอจริงของข้อมูลสังเคราะห์',
+      artLabel: 'ภาพประกอบ',
       rows: [
         {
           platform: 'OT charting + device middleware',

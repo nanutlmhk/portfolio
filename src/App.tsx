@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { Header } from './components/Header'
+import { CountUp } from './components/CountUp'
 import { HospitalTwin } from './components/HospitalTwin'
+import { PlatformArt, type PlatformArtKind } from './components/PlatformArt'
 import { BulletList, Label, Section, StatusBadge, Tag } from './components/ui'
 import { GITHUB_URL, LOGOS, portfolioContent, RESUME_URL } from './data/portfolioData'
 import type { ContactAction, Locale, ThemeMode } from './types/portfolio'
@@ -37,6 +39,9 @@ function ContactIcon({ kind }: { kind: ContactAction['kind'] }) {
   )
 }
 
+// One thumbnail per platform card, in the same order as `platforms.rows` in portfolioData.ts.
+const PLATFORM_ART: PlatformArtKind[] = ['chart', 'order', 'archive', 'imaging', 'locked', 'twin']
+
 const secondaryButton =
   'border border-line bg-panel px-5 py-3 text-center font-mono text-sm font-medium text-ink transition hover:border-accent hover:text-accent'
 
@@ -61,6 +66,30 @@ function App() {
     document.documentElement.classList.toggle('dark', theme === 'dark')
     window.localStorage.setItem(THEME_KEY, theme)
   }, [theme])
+
+  useEffect(() => {
+    if (!('IntersectionObserver' in window)) {
+      return
+    }
+
+    // Sections fade in as they scroll into view. The class is only added once
+    // the observer exists, so content is never hidden if this does not run.
+    document.documentElement.classList.add('js-reveal')
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible')
+            observer.unobserve(entry.target)
+          }
+        })
+      },
+      { threshold: 0.05, rootMargin: '0px 0px -8% 0px' },
+    )
+    document.querySelectorAll('.reveal').forEach((element) => observer.observe(element))
+
+    return () => observer.disconnect()
+  }, [])
 
   useEffect(() => {
     document.documentElement.lang = locale
@@ -121,7 +150,7 @@ function App() {
             {content.stats.map((stat) => (
               <div key={stat.label} className="border-b border-r border-line p-4 sm:p-5">
                 <dd className="font-mono text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
-                  {stat.value}
+                  <CountUp value={stat.value} />
                 </dd>
                 <dt className="mt-2 text-sm leading-5 text-muted">{stat.label}</dt>
               </div>
@@ -135,7 +164,7 @@ function App() {
         </section>
 
         <Section id="bring" index="01" eyebrow={bring.eyebrow} title={bring.title}>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="stagger grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {bring.rows.map((row, index) => (
               <article key={row.area} className="border border-line bg-panel p-4 sm:p-5">
                 <p className="font-mono text-xs text-muted">{String(index + 1).padStart(2, '0')}</p>
@@ -147,7 +176,7 @@ function App() {
         </Section>
 
         <Section id="management" index="02" eyebrow={management.eyebrow} title={management.title}>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="stagger grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {management.rows.map((row) => (
               <article key={row.area} className="border border-line border-l-2 border-l-accent bg-panel p-4 sm:p-5">
                 <h3 className="text-base font-semibold text-ink">{row.area}</h3>
@@ -157,10 +186,17 @@ function App() {
           </div>
         </Section>
 
-        <Section id="platforms" index="03" eyebrow={platforms.eyebrow} title={platforms.title}>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {platforms.rows.map((row) => (
-              <article key={row.platform} className="border border-line bg-panel">
+        <Section
+          id="platforms"
+          index="03"
+          eyebrow={platforms.eyebrow}
+          title={platforms.title}
+          description={platforms.note}
+        >
+          <div className="stagger grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {platforms.rows.map((row, index) => (
+              <article key={row.platform} className="art-card border border-line bg-panel">
+                <PlatformArt kind={PLATFORM_ART[index] ?? 'locked'} label={`${row.platform}: ${platforms.artLabel}`} />
                 <div className="border-b border-line px-4 py-2.5 sm:px-5">
                   <StatusBadge tone={row.tone}>{row.status}</StatusBadge>
                 </div>

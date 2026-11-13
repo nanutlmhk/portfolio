@@ -54,7 +54,7 @@ type SectionProps = {
 
 export function Section({ id, index, eyebrow, title, description, children }: SectionProps) {
   return (
-    <section id={id} className="mx-auto max-w-6xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
+    <section id={id} className="reveal mx-auto max-w-6xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
       <div className="flex items-center gap-3 font-mono text-xs uppercase tracking-widest text-accent">
         <span>{index}</span>
         <span className="h-px w-8 bg-accent" />
