@@ -22,7 +22,20 @@ const CLIENTS = [
   'Porjai',
 ]
 
-// Names only. Add official logo files only once each organization has given permission.
+// Logo files live in public/logos. A name without an entry here is shown as text only.
+export const LOGOS: Record<string, string> = {
+  'Neurological Institute of Thailand (NIT)': 'nit.jpg',
+  'Vimut Hospital': 'vimut.svg',
+  'Lampang Hospital': 'lampang-hospital.jpg',
+  'WIH International Hospital': 'wih.png',
+  'Dräger': 'draeger.webp',
+  'GE HealthCare': 'ge-healthcare.svg',
+  Philips: 'philips.png',
+  'B. Braun': 'bbraun.jpg',
+  Fresenius: 'fresenius.svg',
+  Getinge: 'getinge.svg',
+}
+
 const HOSPITALS = ['Neurological Institute of Thailand (NIT)', 'Vimut Hospital', 'Lampang Hospital', 'WIH International Hospital']
 
 const DEVICE_VENDORS = ['Dräger', 'GE HealthCare', 'Philips', 'B. Braun', 'Fresenius', 'Getinge']

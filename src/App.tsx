@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Header } from './components/Header'
 import { IntegrationMap } from './components/IntegrationMap'
 import { BulletList, Label, Section, StatusBadge, Tag } from './components/ui'
-import { GITHUB_URL, portfolioContent, RESUME_URL } from './data/portfolioData'
+import { GITHUB_URL, LOGOS, portfolioContent, RESUME_URL } from './data/portfolioData'
 import type { ContactAction, Locale, ThemeMode } from './types/portfolio'
 
 const THEME_KEY = 'portfolio-theme'
@@ -184,14 +184,30 @@ function App() {
               <div key={group.kind}>
                 <Label className="mb-3">{group.label}</Label>
                 <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-                  {group.names.map((name) => (
-                    <li
-                      key={name}
-                      className="flex items-center border border-line bg-panel px-4 py-3 text-sm font-medium leading-5 text-ink"
-                    >
-                      {name}
-                    </li>
-                  ))}
+                  {group.names.map((name) =>
+                    LOGOS[name] ? (
+                      <li key={name} className="flex flex-col border border-line bg-panel">
+                        <div className="flex h-24 items-center justify-center bg-white p-2">
+                          <img
+                            src={`/logos/${LOGOS[name]}`}
+                            alt={`${name} logo`}
+                            loading="lazy"
+                            className="max-h-full max-w-[78%] object-contain"
+                          />
+                        </div>
+                        <p className="border-t border-line px-3 py-2 text-center text-xs font-medium leading-5 text-body">
+                          {name}
+                        </p>
+                      </li>
+                    ) : (
+                      <li
+                        key={name}
+                        className="flex items-center border border-line bg-panel px-4 py-3 text-sm font-medium leading-5 text-ink"
+                      >
+                        {name}
+                      </li>
+                    ),
+                  )}
                 </ul>
               </div>
             ))}
