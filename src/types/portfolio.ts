@@ -11,106 +11,94 @@ export type Stat = {
   label: string
 }
 
-export type FocusArea = {
-  title: string
-  description: string
+export type StatusTone = 'live' | 'progress' | 'demo'
+
+export type EvidenceRow = {
+  area: string
+  evidence: string
 }
 
-export type Project = {
-  title: string
-  category: string
-  summary: string
-  challenge: string
-  delivery: string
-  impact: string[]
-  systems: string[]
-  tags: string[]
-}
-
-export type HospitalExperience = {
+export type CareerRole = {
   organization: string
   role: string
   period: string
-  description: string
-  highlights: string[]
+  bullets: string[]
 }
 
-export type ResumeHighlight = {
-  title: string
-  description: string
+export type PlatformRow = {
+  platform: string
+  purpose: string
+  status: string
+  tone: StatusTone
+}
+
+export type SkillGroup = {
+  area: string
+  items: string[]
 }
 
 export type ContactAction = {
+  kind: 'email' | 'phone' | 'github'
   title: string
   description: string
   href: string
   cta: string
 }
 
-export type SectionLabels = {
-  problemSolved: string
-  systemDelivered: string
-  outcomeFocus: string
-  systems: string
-}
-
 export type PortfolioContent = {
   navItems: NavItem[]
-  tagline: string
   resumeButton: string
   hero: {
-    title: string
-    description: string
-    availability: string[]
-    experienceTitle: string
-    skillTitle: string
-    skillChips: string[]
-    primaryCta: string
-    secondaryCta: string
+    name: string
+    headline: string
+    summary: string
+    location: string
+    cvCta: string
+    contactCta: string
+    githubCta: string
+    highlightsTitle: string
+    highlights: string[]
+    mapLabels: {
+      devices: string
+      platform: string
+      systems: string
+    }
   }
   stats: Stat[]
-  focusAreas: FocusArea[]
-  about: {
+  bring: {
     eyebrow: string
     title: string
-    description: string
-    paragraphs: string[]
-    expertiseTitle: string
-    expertise: string[]
-    interestsTitle: string
-    interestsDescription: string
+    rows: EvidenceRow[]
+  }
+  platforms: {
+    eyebrow: string
+    title: string
+    rows: PlatformRow[]
   }
   experience: {
     eyebrow: string
     title: string
-    description: string
-    imageTitle: string
-    imageDescription: string
-    entries: HospitalExperience[]
+    roles: CareerRole[]
   }
-  projectsSection: {
+  clients: {
     eyebrow: string
     title: string
-    description: string
-    labels: SectionLabels
-    entries: Project[]
+    names: string[]
   }
-  resume: {
+  skills: {
     eyebrow: string
     title: string
-    description: string
-    downloadEyebrow: string
-    downloadTitle: string
-    downloadDescription: string
-    downloadCta: string
-    highlights: ResumeHighlight[]
-    capabilitiesTitle: string
-    capabilities: string[]
+    groups: SkillGroup[]
+    note: string
+    educationTitle: string
+    degree: string
+    school: string
+    languagesTitle: string
+    languages: string
   }
   contact: {
     eyebrow: string
     title: string
-    description: string
     actions: ContactAction[]
   }
   controls: {

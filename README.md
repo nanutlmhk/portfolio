@@ -30,10 +30,12 @@ The site supports both English and Thai, includes light/dark mode, and is optimi
 
 ## Main Sections
 
-- Home
-- About
+- Hero (name, headline, summary, key numbers)
+- What I bring
+- Platform portfolio
 - Experience
-- Project
+- Clients
+- Skills
 - Contact
 
 ## Local Development
@@ -88,8 +90,8 @@ This makes it easier to update:
 
 - English and Thai content
 - Home section messaging
-- Hospital experience entries
-- Project details
+- Experience and clients
+- Platform portfolio
 - Contact information
 
 ## Assets
@@ -100,8 +102,7 @@ Static assets used by the portfolio are stored under:
 
 This includes:
 
-- Resume PDF
-- Hospital experience image
+- CV PDF (`Nanut_Lertmahakiat_CV.pdf`, linked via `RESUME_URL` in `src/data/portfolioData.ts`)
 
 ## Status
 
