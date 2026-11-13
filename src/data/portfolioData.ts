@@ -191,8 +191,7 @@ export const portfolioContent: Record<'en' | 'th', PortfolioContent> = {
       title: 'Who I have worked with, and the devices I have integrated.',
       groups: [
         { kind: 'client', label: 'Consulting clients', names: CLIENTS },
-        { kind: 'hospital', label: 'Hospitals', names: HOSPITALS },
-        { kind: 'device', label: 'Medical device vendors', names: DEVICE_VENDORS },
+        { kind: 'partner', label: 'Hospitals and medical device vendors', names: [...HOSPITALS, ...DEVICE_VENDORS] },
       ],
     },
     skills: {
@@ -370,8 +369,7 @@ export const portfolioContent: Record<'en' | 'th', PortfolioContent> = {
       title: 'องค์กรที่ผมเคยทำงานด้วย และอุปกรณ์ที่ผมเคยเชื่อมต่อ',
       groups: [
         { kind: 'client', label: 'ลูกค้างานที่ปรึกษา', names: CLIENTS },
-        { kind: 'hospital', label: 'โรงพยาบาล', names: HOSPITALS },
-        { kind: 'device', label: 'ผู้ผลิตอุปกรณ์การแพทย์', names: DEVICE_VENDORS },
+        { kind: 'partner', label: 'โรงพยาบาลและผู้ผลิตอุปกรณ์การแพทย์', names: [...HOSPITALS, ...DEVICE_VENDORS] },
       ],
     },
     skills: {

@@ -33,7 +33,7 @@ export type PlatformRow = {
 }
 
 export type NetworkGroup = {
-  kind: 'client' | 'hospital' | 'device'
+  kind: 'client' | 'partner'
   label: string
   names: string[]
 }
