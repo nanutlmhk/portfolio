@@ -1,53 +1,52 @@
 import { useEffect, useState } from 'react'
-import { ContactCard } from './components/ContactCard'
 import { Header } from './components/Header'
-import { HospitalExperienceCard } from './components/HospitalExperienceCard'
-import { ProjectCard } from './components/ProjectCard'
-import { SectionHeading } from './components/SectionHeading'
-import { portfolioContent } from './data/portfolioData'
-import type { Locale, ThemeMode } from './types/portfolio'
+import { IntegrationMap } from './components/IntegrationMap'
+import { BulletList, Label, Section, StatusBadge, Tag } from './components/ui'
+import { GITHUB_URL, portfolioContent, RESUME_URL } from './data/portfolioData'
+import type { ContactAction, Locale, ThemeMode } from './types/portfolio'
 
 const THEME_KEY = 'portfolio-theme'
 const LOCALE_KEY = 'portfolio-locale'
 
-function StatIcon({ label }: { label: string }) {
-  if (label.toLowerCase().includes('healthcare')) {
+function ContactIcon({ kind }: { kind: ContactAction['kind'] }) {
+  if (kind === 'github') {
     return (
-      <svg viewBox="0 0 24 24" className="h-5 w-5 fill-none stroke-current stroke-2">
-        <path d="M12 21s-6.7-4.4-9-8.2C1.1 9.8 2.6 6 6.3 6c2.1 0 3.3 1.2 4 2.3.7-1.1 1.9-2.3 4-2.3C17.4 6 19 9.8 21 12.8 18.7 16.6 12 21 12 21Z" strokeLinecap="round" strokeLinejoin="round" />
+      <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current">
+        <path d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.3c-3.3.7-4-1.4-4-1.4-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.1.1 1.8 1.2 1.8 1.2 1 .1 2.1-.7 2.6-1.1.1-.7.4-1.2.7-1.5-2.7-.3-5.5-1.3-5.5-6A4.7 4.7 0 0 1 5.4 6c-.1-.3-.6-1.6.1-3.3 0 0 1-.3 3.4 1.3a11.4 11.4 0 0 1 6.2 0c2.3-1.6 3.4-1.3 3.4-1.3.7 1.7.2 3 .1 3.3a4.7 4.7 0 0 1 1.2 3.2c0 4.7-2.8 5.7-5.5 6 .4.3.8 1 .8 2v3c0 .3.2.7.8.6A12 12 0 0 0 12 .5Z" />
       </svg>
     )
   }
 
-  if (label.toLowerCase().includes('hospital') || label.includes('โรงพยาบาล')) {
+  if (kind === 'phone') {
     return (
-      <svg viewBox="0 0 24 24" className="h-5 w-5 fill-none stroke-current stroke-2">
-        <path d="M4 21V7a1 1 0 0 1 1-1h5v15M14 21V3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v18M9 10h.01M9 14h.01M9 18h.01M17 6h.01M17 10h.01M17 14h.01" strokeLinecap="round" strokeLinejoin="round" />
+      <svg viewBox="0 0 24 24" className="h-4 w-4 fill-none stroke-current stroke-2">
+        <path
+          d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.4 19.4 0 0 1-6-6A19.8 19.8 0 0 1 2 4.1 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7l.4 2.6a2 2 0 0 1-.6 1.8l-1.9 1.9a16 16 0 0 0 6 6l1.9-1.9a2 2 0 0 1 1.8-.6l2.6.4A2 2 0 0 1 22 16.9Z"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
       </svg>
     )
   }
 
   return (
-    <svg viewBox="0 0 24 24" className="h-5 w-5 fill-none stroke-current stroke-2">
-      <path d="M12 8v5l3 3" strokeLinecap="round" strokeLinejoin="round" />
-      <circle cx="12" cy="12" r="9" />
+    <svg viewBox="0 0 24 24" className="h-4 w-4 fill-none stroke-current stroke-2">
+      <path d="M4 5h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="m22 7-10 7L2 7" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   )
 }
 
+const secondaryButton =
+  'border border-line bg-panel px-5 py-3 text-center font-mono text-sm font-medium text-ink transition hover:border-accent hover:text-accent'
+
 function App() {
   const [theme, setTheme] = useState<ThemeMode>(() => {
     if (typeof window === 'undefined') {
-      return 'light'
+      return 'dark'
     }
 
-    const savedTheme = window.localStorage.getItem(THEME_KEY)
-
-    if (savedTheme === 'light' || savedTheme === 'dark') {
-      return savedTheme
-    }
-
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+    return window.localStorage.getItem(THEME_KEY) === 'light' ? 'light' : 'dark'
   })
 
   const [locale, setLocale] = useState<Locale>(() => {
@@ -55,8 +54,7 @@ function App() {
       return 'en'
     }
 
-    const savedLocale = window.localStorage.getItem(LOCALE_KEY)
-    return savedLocale === 'th' ? 'th' : 'en'
+    return window.localStorage.getItem(LOCALE_KEY) === 'th' ? 'th' : 'en'
   })
 
   useEffect(() => {
@@ -70,9 +68,10 @@ function App() {
   }, [locale])
 
   const content = portfolioContent[locale]
+  const { hero, bring, platforms, experience, clients, skills, contact } = content
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-[radial-gradient(circle_at_top_left,_rgba(34,211,238,0.13),_transparent_30%),radial-gradient(circle_at_top_right,_rgba(14,165,233,0.12),_transparent_24%),linear-gradient(180deg,_#f8fcff_0%,_#ffffff_28%,_#f8fafc_100%)] text-slate-800 transition-colors dark:bg-[radial-gradient(circle_at_top_left,_rgba(34,211,238,0.12),_transparent_24%),radial-gradient(circle_at_top_right,_rgba(14,165,233,0.14),_transparent_20%),linear-gradient(180deg,_#020617_0%,_#0f172a_34%,_#020617_100%)] dark:text-slate-100">
+    <div className="min-h-screen overflow-x-hidden">
       <Header
         navItems={content.navItems}
         resumeButton={content.resumeButton}
@@ -84,198 +83,172 @@ function App() {
       />
 
       <main>
-        <section id="home" className="mx-auto max-w-7xl px-4 pb-14 pt-10 sm:px-6 sm:pt-14 lg:px-8 lg:pb-28 lg:pt-24">
-          <div className="max-w-5xl">
-            <h1 className="max-w-4xl text-3xl font-semibold leading-tight tracking-tight text-slate-950 dark:text-white sm:text-4xl md:text-6xl">
-              {content.hero.title}
-            </h1>
-            <p className="mt-5 max-w-3xl text-base leading-7 text-slate-600 dark:text-slate-300 sm:text-lg sm:leading-8">
-              {content.hero.description}
-            </p>
+        <section id="home" className="mx-auto max-w-6xl px-4 pb-10 pt-12 sm:px-6 lg:px-8 lg:pt-20">
+          <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:gap-12">
+            <div className="min-w-0">
+              <h1 className="text-4xl font-semibold leading-tight tracking-tight text-ink sm:text-5xl">
+                {hero.name}
+              </h1>
+              <p className="mt-4 font-mono text-sm uppercase tracking-widest text-accent sm:text-base">
+                {hero.headline}
+              </p>
+              <p className="mt-6 max-w-xl text-base leading-7 text-body sm:text-lg sm:leading-8">{hero.summary}</p>
 
-            <div className="mt-6 flex flex-wrap gap-3">
-              {content.hero.availability.map((item) => (
-                <span
-                  key={item}
-                  className="rounded-full border border-cyan-200 bg-cyan-50 px-4 py-2 text-sm font-semibold text-cyan-900 dark:border-cyan-800 dark:bg-cyan-950/40 dark:text-cyan-100"
+              <div className="mt-8 grid gap-3 sm:flex sm:flex-wrap">
+                <a
+                  href={RESUME_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="bg-accent px-5 py-3 text-center font-mono text-sm font-medium text-on-accent transition hover:opacity-85"
                 >
-                  {item}
-                </span>
-              ))}
-            </div>
-
-            <div className="mt-8 grid gap-3 sm:flex sm:flex-wrap sm:gap-4">
-              <a
-                href="#experience"
-                className="rounded-full bg-slate-950 px-6 py-3 text-center text-sm font-semibold text-white transition hover:bg-slate-800 dark:bg-cyan-400 dark:text-slate-950 dark:hover:bg-cyan-300"
-              >
-                {content.hero.primaryCta}
-              </a>
-              <a
-                href="/assets/Nanut_Lertmahakiat_Resume_CV2026.pdf"
-                target="_blank"
-                rel="noreferrer"
-                className="rounded-full border border-slate-200 bg-white px-6 py-3 text-center text-sm font-semibold text-slate-900 transition hover:border-cyan-300 hover:bg-cyan-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:bg-slate-800"
-              >
-                {content.hero.secondaryCta}
-              </a>
-            </div>
-
-            <div className="mt-12">
-              <p className="text-sm font-semibold uppercase tracking-[0.24em] text-slate-500 dark:text-slate-400">
-                {content.hero.experienceTitle}
-              </p>
-              <div className="mt-4 grid gap-4 sm:grid-cols-3">
-                {content.stats.map((stat) => (
-                  <div
-                    key={stat.label}
-                    className="rounded-[1.5rem] border border-white/80 bg-white/85 p-5 shadow-[0_20px_45px_-30px_rgba(15,23,42,0.35)] dark:border-slate-800 dark:bg-slate-900/90 dark:shadow-[0_18px_48px_-32px_rgba(2,8,23,0.95)]"
-                  >
-                    <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-cyan-500/12 text-cyan-700 dark:bg-cyan-400/15 dark:text-cyan-300">
-                      <StatIcon label={stat.label} />
-                    </div>
-                    <p className="text-3xl font-semibold tracking-tight text-slate-950 dark:text-white">
-                      {stat.value}
-                    </p>
-                    <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">{stat.label}</p>
-                  </div>
-                ))}
+                  {hero.cvCta} ↓
+                </a>
+                <a href="#contact" className={secondaryButton}>
+                  {hero.contactCta}
+                </a>
+                <a href={GITHUB_URL} target="_blank" rel="noreferrer" className={secondaryButton}>
+                  {hero.githubCta} ↗
+                </a>
               </div>
+
+              <p className="mt-6 font-mono text-xs text-muted">{hero.location}</p>
             </div>
 
-            <div className="mt-12">
-              <p className="text-sm font-semibold uppercase tracking-[0.24em] text-slate-500 dark:text-slate-400">
-                {content.hero.skillTitle}
-              </p>
-              <div className="mt-4 flex flex-wrap gap-3">
-                {content.hero.skillChips.map((skill) => (
-                  <span
-                    key={skill}
-                    className="rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-[0_10px_30px_-24px_rgba(15,23,42,0.45)] dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200"
-                  >
-                    {skill}
-                  </span>
-                ))}
+            <IntegrationMap labels={hero.mapLabels} />
+          </div>
+
+          <dl className="mt-12 grid grid-cols-2 border-l border-t border-line bg-panel lg:grid-cols-4">
+            {content.stats.map((stat) => (
+              <div key={stat.label} className="border-b border-r border-line p-4 sm:p-5">
+                <dd className="font-mono text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
+                  {stat.value}
+                </dd>
+                <dt className="mt-2 text-sm leading-5 text-muted">{stat.label}</dt>
               </div>
-            </div>
+            ))}
+          </dl>
+
+          <div className="mt-8">
+            <Label className="mb-3">{hero.highlightsTitle}</Label>
+            <BulletList items={hero.highlights} />
           </div>
         </section>
 
-        <section id="about" className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
-          <SectionHeading
-            eyebrow={content.about.eyebrow}
-            title={content.about.title}
-            description={content.about.description}
-          />
-
-          <div className="mt-12 grid gap-8 lg:grid-cols-[1.08fr_0.92fr]">
-            <div className="rounded-[1.75rem] border border-slate-200/80 bg-white p-5 shadow-[0_24px_70px_-40px_rgba(15,23,42,0.3)] dark:border-slate-800 dark:bg-slate-900 sm:rounded-[2rem] sm:p-8">
-              {content.about.paragraphs.map((paragraph) => (
-                <p
-                  key={paragraph}
-                  className="text-base leading-7 text-slate-700 dark:text-slate-200 sm:text-lg sm:leading-8 [&:not(:first-child)]:mt-5 sm:[&:not(:first-child)]:mt-6"
-                >
-                  {paragraph}
-                </p>
-              ))}
-            </div>
-
-            <div className="rounded-[1.75rem] border border-slate-200/80 bg-slate-950 p-5 text-white shadow-[0_24px_70px_-40px_rgba(15,23,42,0.45)] dark:border-slate-800 dark:bg-slate-900 sm:rounded-[2rem] sm:p-8">
-              <p className="text-sm font-semibold uppercase tracking-[0.28em] text-cyan-300">
-                {content.about.expertiseTitle}
-              </p>
-              <div className="mt-6 flex flex-wrap gap-3">
-                {content.about.expertise.map((skill) => (
-                  <span
-                    key={skill}
-                    className="rounded-full border border-white/15 bg-white/8 px-4 py-2 text-sm text-slate-100"
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
-              <div className="mt-8 rounded-[1.5rem] border border-white/10 bg-white/5 p-5">
-                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-300">
-                  {content.about.interestsTitle}
-                </p>
-                <p className="mt-3 text-sm leading-7 text-slate-300">
-                  {content.about.interestsDescription}
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section id="experience" className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
-          <SectionHeading
-            eyebrow={content.experience.eyebrow}
-            title={content.experience.title}
-            description={content.experience.description}
-          />
-
-          <div className="mt-12 grid gap-8 xl:grid-cols-[0.88fr_1.12fr]">
-            <div className="rounded-[1.75rem] border border-slate-200/80 bg-white p-4 shadow-[0_24px_70px_-42px_rgba(15,23,42,0.34)] dark:border-slate-800 dark:bg-slate-900 sm:rounded-[2rem] sm:p-5">
-              <div className="rounded-[1.25rem] border border-slate-100 bg-slate-50 p-4 dark:border-slate-800 dark:bg-slate-950/50 sm:rounded-[1.5rem] sm:p-5">
-                <p className="text-sm font-semibold uppercase tracking-[0.22em] text-cyan-700 dark:text-cyan-300">
-                  {content.experience.imageTitle}
-                </p>
-                <p className="mt-3 text-sm leading-7 text-slate-600 dark:text-slate-300">
-                  {content.experience.imageDescription}
-                </p>
-              </div>
-              <img
-                src="/assets/hospital-overall2.png"
-                alt="Hospital IT landscape and experience overview"
-                className="mt-5 w-full rounded-[1.5rem] border border-slate-100 object-cover dark:border-slate-800"
-              />
-            </div>
-
-            <div className="grid gap-6 md:grid-cols-2">
-              {content.experience.entries.map((experience) => (
-                <HospitalExperienceCard
-                  key={experience.organization}
-                  experience={experience}
-                />
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section id="projects" className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
-          <SectionHeading
-            eyebrow={content.projectsSection.eyebrow}
-            title={content.projectsSection.title}
-            description={content.projectsSection.description}
-          />
-
-          <div className="mt-12 grid gap-8">
-            {content.projectsSection.entries.map((project) => (
-              <ProjectCard
-                key={project.title}
-                project={project}
-                labels={content.projectsSection.labels}
-              />
+        <Section id="bring" index="01" eyebrow={bring.eyebrow} title={bring.title}>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {bring.rows.map((row, index) => (
+              <article key={row.area} className="border border-line bg-panel p-4 sm:p-5">
+                <p className="font-mono text-xs text-muted">{String(index + 1).padStart(2, '0')}</p>
+                <h3 className="mt-2 text-base font-semibold text-ink">{row.area}</h3>
+                <p className="mt-2 text-sm leading-6 text-body">{row.evidence}</p>
+              </article>
             ))}
           </div>
-        </section>
+        </Section>
 
-        <section id="contact" className="px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
-          <div className="mx-auto max-w-7xl rounded-[2rem] border border-cyan-100 bg-[linear-gradient(135deg,_rgba(8,47,73,0.96),_rgba(14,116,144,0.88))] p-5 text-white shadow-[0_30px_90px_-45px_rgba(8,145,178,0.45)] dark:border-slate-800 dark:bg-[linear-gradient(135deg,_rgba(8,47,73,0.9),_rgba(12,74,110,0.96))] sm:rounded-[2.5rem] sm:p-8 lg:p-12">
-            <SectionHeading
-              eyebrow={content.contact.eyebrow}
-              title={content.contact.title}
-              description={content.contact.description}
-              theme="dark"
-            />
+        <Section id="platforms" index="02" eyebrow={platforms.eyebrow} title={platforms.title}>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {platforms.rows.map((row) => (
+              <article key={row.platform} className="border border-line bg-panel">
+                <div className="border-b border-line px-4 py-2.5 sm:px-5">
+                  <StatusBadge tone={row.tone}>{row.status}</StatusBadge>
+                </div>
+                <div className="p-4 sm:p-5">
+                  <h3 className="text-base font-semibold text-ink">{row.platform}</h3>
+                  <p className="mt-2 text-sm leading-6 text-body">{row.purpose}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </Section>
 
-            <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-              {content.contact.actions.map((action) => (
-                <ContactCard key={action.title} action={action} />
+        <Section id="experience" index="03" eyebrow={experience.eyebrow} title={experience.title}>
+          <ol className="border-l border-line">
+            {experience.roles.map((role) => (
+              <li key={role.organization} className="relative pb-10 pl-6 last:pb-0 sm:pl-8">
+                <span className="absolute -left-[5px] top-1.5 h-[9px] w-[9px] bg-accent" />
+                <p className="font-mono text-xs uppercase tracking-widest text-accent">{role.period}</p>
+                <h3 className="mt-2 text-lg font-semibold text-ink sm:text-xl">{role.organization}</h3>
+                <p className="mt-1 text-sm text-muted">{role.role}</p>
+                <div className="mt-4 max-w-3xl">
+                  <BulletList items={role.bullets} />
+                </div>
+              </li>
+            ))}
+          </ol>
+        </Section>
+
+        <Section id="clients" index="04" eyebrow={clients.eyebrow} title={clients.title}>
+          <ul className="flex flex-wrap gap-3">
+            {clients.names.map((name) => (
+              <li key={name} className="border border-line bg-panel px-4 py-2.5 text-sm font-medium text-ink">
+                {name}
+              </li>
+            ))}
+          </ul>
+        </Section>
+
+        <Section id="skills" index="05" eyebrow={skills.eyebrow} title={skills.title}>
+          <div className="grid gap-4 lg:grid-cols-[1.3fr_0.7fr]">
+            <div className="border border-line bg-panel">
+              {skills.groups.map((group) => (
+                <div
+                  key={group.area}
+                  className="grid gap-3 border-b border-line px-4 py-4 sm:grid-cols-[11rem_1fr] sm:gap-4 sm:px-5"
+                >
+                  <p className="font-mono text-xs font-medium leading-7 text-accent">{group.area}</p>
+                  <div className="flex flex-wrap gap-2">
+                    {group.items.map((item) => (
+                      <Tag key={item}>{item}</Tag>
+                    ))}
+                  </div>
+                </div>
               ))}
+              <p className="px-4 py-3 text-sm text-muted sm:px-5">{skills.note}</p>
+            </div>
+
+            <div className="self-start border border-line bg-panel">
+              <div className="border-b border-line px-4 py-4 sm:px-5">
+                <Label>{skills.educationTitle}</Label>
+                <p className="mt-2 font-medium text-ink">{skills.degree}</p>
+                <p className="mt-1 text-sm leading-6 text-muted">{skills.school}</p>
+              </div>
+              <div className="px-4 py-4 sm:px-5">
+                <Label>{skills.languagesTitle}</Label>
+                <p className="mt-2 text-ink">{skills.languages}</p>
+              </div>
             </div>
           </div>
-        </section>
+        </Section>
+
+        <Section id="contact" index="06" eyebrow={contact.eyebrow} title={contact.title}>
+          <div className="grid gap-4 md:grid-cols-3">
+            {contact.actions.map((action) => (
+              <a
+                key={action.kind}
+                href={action.href}
+                target={action.kind === 'github' ? '_blank' : undefined}
+                rel={action.kind === 'github' ? 'noreferrer' : undefined}
+                className="group border border-line bg-panel p-4 transition hover:border-accent sm:p-5"
+              >
+                <span className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-widest text-muted">
+                  <ContactIcon kind={action.kind} />
+                  {action.title}
+                </span>
+                <span className="mt-3 block break-all font-mono text-sm text-ink">{action.description}</span>
+                <span className="mt-4 block font-mono text-xs text-accent">{action.cta} →</span>
+              </a>
+            ))}
+          </div>
+        </Section>
       </main>
+
+      <footer className="border-t border-line">
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-2 px-4 py-6 font-mono text-xs text-muted sm:px-6 lg:px-8">
+          <span>© {new Date().getFullYear()} Nanut Lertmahakiat</span>
+          <span>{hero.location}</span>
+        </div>
+      </footer>
     </div>
   )
 }
