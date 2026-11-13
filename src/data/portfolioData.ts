@@ -87,10 +87,9 @@ export const portfolioContent: Record<'en' | 'th', PortfolioContent> = {
         'Built and run middleware that connects fragmented clinical systems and devices into the hospital platform.',
         'Led legacy clinical data migrations.',
       ],
-      mapLabels: {
-        devices: 'Devices',
-        platform: 'Platform',
-        systems: 'Hospital systems',
+      twin: {
+        note: 'Simulation · synthetic data',
+        legend: { staff: 'Staff', patient: 'Patients', journey: 'One patient journey' },
       },
     },
     stats: [
@@ -297,10 +296,9 @@ export const portfolioContent: Record<'en' | 'th', PortfolioContent> = {
         'สร้างและดูแล middleware ที่เชื่อมระบบทางคลินิกและอุปกรณ์ที่แยกส่วนกันเข้ากับแพลตฟอร์มของโรงพยาบาล',
         'นำโครงการย้ายข้อมูลทางคลินิกจากระบบเดิม',
       ],
-      mapLabels: {
-        devices: 'อุปกรณ์',
-        platform: 'แพลตฟอร์ม',
-        systems: 'ระบบโรงพยาบาล',
+      twin: {
+        note: 'แบบจำลอง · ข้อมูลสังเคราะห์',
+        legend: { staff: 'เจ้าหน้าที่', patient: 'ผู้ป่วย', journey: 'เส้นทางของผู้ป่วยหนึ่งราย' },
       },
     },
     stats: [

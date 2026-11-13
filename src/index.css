@@ -35,6 +35,12 @@
   --warn: #b45309;
   --info: #0369a1;
   --grid: rgba(11, 20, 17, 0.045);
+  --twin-floor: #f1f4f3;
+  --twin-room: #dde5e2;
+  --twin-furniture: #b9c6c1;
+  --twin-side: #c3ceca;
+  --twin-side-dark: #aebbb6;
+  --twin-edge: #9fada8;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -57,6 +63,12 @@
   --warn: #f5b942;
   --info: #6cc4f5;
   --grid: rgba(255, 255, 255, 0.028);
+  --twin-floor: #1b2732;
+  --twin-room: #2a3a49;
+  --twin-furniture: #4a6076;
+  --twin-side: #121b23;
+  --twin-side-dark: #0d141a;
+  --twin-edge: #3a4f61;
 }
 
 * {
@@ -110,6 +122,31 @@ body {
 
 :root.dark .logo-tile:hover .logo {
   opacity: 1;
+}
+
+/* Isometric hospital illustration in the hero. */
+.twin-floor {
+  fill: var(--twin-floor);
+}
+
+.twin-room {
+  fill: var(--twin-room);
+}
+
+.twin-furniture {
+  fill: var(--twin-furniture);
+}
+
+.twin-side {
+  fill: var(--twin-side);
+}
+
+.twin-side-dark {
+  fill: var(--twin-side-dark);
+}
+
+.twin-edge {
+  stroke: var(--twin-edge);
 }
 
 .flow-line {
