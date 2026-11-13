@@ -32,6 +32,12 @@ export type PlatformRow = {
   tone: StatusTone
 }
 
+export type NetworkGroup = {
+  kind: 'client' | 'hospital' | 'device'
+  label: string
+  names: string[]
+}
+
 export type SkillGroup = {
   area: string
   items: string[]
@@ -83,7 +89,7 @@ export type PortfolioContent = {
   clients: {
     eyebrow: string
     title: string
-    names: string[]
+    groups: NetworkGroup[]
   }
   skills: {
     eyebrow: string

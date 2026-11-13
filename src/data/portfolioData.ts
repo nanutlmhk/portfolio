@@ -22,6 +22,11 @@ const CLIENTS = [
   'Porjai',
 ]
 
+// Names only. Add official logo files only once each organization has given permission.
+const HOSPITALS = ['NIT', 'Vimut Hospital', 'Lampang Hospital', 'WIH Hospital']
+
+const DEVICE_VENDORS = ['Dräger', 'GE HealthCare', 'Philips', 'B. Braun', 'Fresenius', 'Getinge']
+
 const skillItems: string[][] = [
   ['HL7 v2', 'FHIR R4', 'DICOM / DICOMweb', 'REST', 'SOAP', 'Kafka'],
   ['SQL Server', 'PostgreSQL', 'SQLite', 'Keycloak / OIDC', 'Row-level security', 'Audit'],
@@ -182,9 +187,13 @@ export const portfolioContent: Record<'en' | 'th', PortfolioContent> = {
       ],
     },
     clients: {
-      eyebrow: 'Clients',
-      title: 'Clients as an independent consultant.',
-      names: CLIENTS,
+      eyebrow: 'Clients, hospitals and devices',
+      title: 'Who I have worked with, and the devices I have integrated.',
+      groups: [
+        { kind: 'client', label: 'Consulting clients', names: CLIENTS },
+        { kind: 'hospital', label: 'Hospitals', names: HOSPITALS },
+        { kind: 'device', label: 'Medical device vendors', names: DEVICE_VENDORS },
+      ],
     },
     skills: {
       eyebrow: 'Skills',
@@ -357,9 +366,13 @@ export const portfolioContent: Record<'en' | 'th', PortfolioContent> = {
       ],
     },
     clients: {
-      eyebrow: 'ลูกค้า',
-      title: 'ลูกค้าในฐานะที่ปรึกษาอิสระ',
-      names: CLIENTS,
+      eyebrow: 'ลูกค้า โรงพยาบาล และอุปกรณ์',
+      title: 'องค์กรที่ผมเคยทำงานด้วย และอุปกรณ์ที่ผมเคยเชื่อมต่อ',
+      groups: [
+        { kind: 'client', label: 'ลูกค้างานที่ปรึกษา', names: CLIENTS },
+        { kind: 'hospital', label: 'โรงพยาบาล', names: HOSPITALS },
+        { kind: 'device', label: 'ผู้ผลิตอุปกรณ์การแพทย์', names: DEVICE_VENDORS },
+      ],
     },
     skills: {
       eyebrow: 'ทักษะ',
