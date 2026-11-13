@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import type { Locale } from '../types/portfolio'
 
 /*
  * A small isometric, multi-floor hospital with a simulated day running on it.
@@ -141,17 +142,40 @@ const SHAFT = (() => {
   }
 })()
 
-type FloorInfo = { code: string; name: string; stat: (tick: number) => string }
+type FloorInfo = { code: string; name: Record<Locale, string>; stat: (tick: number, locale: Locale) => string }
 
 const wave = (tick: number, speed: number, phase: number) => (Math.sin(tick * speed + phase) + 1) / 2
 const between = (low: number, high: number, amount: number) => Math.round(low + (high - low) * amount)
 
 const FLOORS: FloorInfo[] = [
-  { code: 'L1', name: 'OPD · REGISTRATION', stat: (t) => `queue ${between(8, 16, wave(t, 0.7, 0))}` },
-  { code: 'L2', name: 'LAB · IMAGING', stat: (t) => `orders ${between(5, 11, wave(t, 0.9, 1.3))}` },
-  { code: 'L3', name: 'OPERATING THEATRES', stat: (t) => `${between(2, 4, wave(t, 0.4, 2.1))}/4 in use` },
-  { code: 'L4', name: 'ICU', stat: (t) => `${between(8, 11, wave(t, 0.5, 0.6))}/12 beds` },
-  { code: 'L5', name: 'WARD', stat: (t) => `${between(38, 45, wave(t, 0.6, 3.0))}/48 beds` },
+  {
+    code: 'L1',
+    name: { en: 'OPD · REGISTRATION', th: 'OPD · ลงทะเบียน' },
+    stat: (t, locale) => `${locale === 'th' ? 'คิว' : 'queue'} ${between(8, 16, wave(t, 0.7, 0))}`,
+  },
+  {
+    code: 'L2',
+    name: { en: 'LAB · IMAGING', th: 'ห้องปฏิบัติการ · รังสีวิทยา' },
+    stat: (t, locale) => `${locale === 'th' ? 'คำสั่งตรวจ' : 'orders'} ${between(5, 11, wave(t, 0.9, 1.3))}`,
+  },
+  {
+    code: 'L3',
+    name: { en: 'OPERATING THEATRES', th: 'ห้องผ่าตัด' },
+    stat: (t, locale) =>
+      locale === 'th'
+        ? `ใช้งาน ${between(2, 4, wave(t, 0.4, 2.1))}/4 ห้อง`
+        : `${between(2, 4, wave(t, 0.4, 2.1))}/4 in use`,
+  },
+  {
+    code: 'L4',
+    name: { en: 'ICU', th: 'ICU' },
+    stat: (t, locale) => `${between(8, 11, wave(t, 0.5, 0.6))}/12 ${locale === 'th' ? 'เตียง' : 'beds'}`,
+  },
+  {
+    code: 'L5',
+    name: { en: 'WARD', th: 'หอผู้ป่วย' },
+    stat: (t, locale) => `${between(38, 45, wave(t, 0.6, 3.0))}/48 ${locale === 'th' ? 'เตียง' : 'beds'}`,
+  },
 ]
 
 const clock = (tick: number) => {
@@ -239,12 +263,18 @@ function Floor({ level, animate }: { level: number; animate: boolean }) {
   )
 }
 
+const DESCRIPTION: Record<Locale, string> = {
+  en: 'Animated illustration of a five-floor hospital: OPD and registration, lab and imaging, operating theatres, ICU and ward, with staff and patients moving and one patient journey traced across the floors',
+  th: 'ภาพเคลื่อนไหวของโรงพยาบาลห้าชั้น: OPD และลงทะเบียน ห้องปฏิบัติการและรังสีวิทยา ห้องผ่าตัด ICU และหอผู้ป่วย พร้อมเจ้าหน้าที่และผู้ป่วยที่เคลื่อนที่ และเส้นทางของผู้ป่วยหนึ่งรายผ่านแต่ละชั้น',
+}
+
 type HospitalTwinProps = {
+  locale: Locale
   note: string
   legend: { staff: string; patient: string; journey: string }
 }
 
-export function HospitalTwin({ note, legend }: HospitalTwinProps) {
+export function HospitalTwin({ locale, note, legend }: HospitalTwinProps) {
   const reducedMotion = usePrefersReducedMotion()
   const animate = !reducedMotion
   const [tick, setTick] = useState(0)
@@ -264,7 +294,7 @@ export function HospitalTwin({ note, legend }: HospitalTwinProps) {
   return (
     <div className="min-w-0 border border-line bg-panel">
       <div className="flex items-center justify-between gap-3 border-b border-line px-4 py-2 font-mono text-[11px] uppercase tracking-widest text-muted">
-        <span>hospital.twin</span>
+        <span>{locale === 'th' ? 'แบบจำลองโรงพยาบาล' : 'hospital.twin'}</span>
         <span className="flex items-center gap-2 text-accent">
           <span className="pulse-dot h-1.5 w-1.5 rounded-full bg-accent" />
           {clock(tick)}
@@ -275,7 +305,7 @@ export function HospitalTwin({ note, legend }: HospitalTwinProps) {
         viewBox="0 0 418 420"
         className="block w-full"
         role="img"
-        aria-label="Animated illustration of a five-floor hospital: OPD and registration, lab and imaging, operating theatres, ICU and ward, with staff and patients moving and one patient journey traced across the floors"
+        aria-label={DESCRIPTION[locale]}
       >
         {FLOORS.map((_, level) => (
           <Floor key={level} level={level} animate={animate} />
@@ -327,10 +357,10 @@ export function HospitalTwin({ note, legend }: HospitalTwinProps) {
             <g key={floor.code} className="font-mono">
               <line x1={x + 3} y1={y} x2={x + 14} y2={y} className="stroke-muted" strokeWidth="0.8" />
               <text x={x + 18} y={y} className="fill-ink text-[10.5px]">
-                <tspan className="fill-accent">{floor.code}</tspan> {floor.name}
+                <tspan className="fill-accent">{floor.code}</tspan> {floor.name[locale]}
               </text>
               <text x={x + 18} y={y + 12} className="fill-muted text-[9.5px]">
-                {floor.stat(tick)}
+                {floor.stat(tick, locale)}
               </text>
             </g>
           )

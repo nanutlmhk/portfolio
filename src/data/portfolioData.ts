@@ -58,8 +58,8 @@ const skillItems: string[][] = [
   ['TypeScript', 'Node.js', 'React', 'Electron', 'Python'],
 ]
 
-const skillGroups = (areas: string[]): SkillGroup[] =>
-  areas.map((area, index) => ({ area, items: skillItems[index] }))
+const skillGroups = (areas: string[], translated: Record<string, string> = {}): SkillGroup[] =>
+  areas.map((area, index) => ({ area, items: skillItems[index].map((item) => translated[item] ?? item) }))
 
 export const portfolioContent: Record<'en' | 'th', PortfolioContent> = {
   en: {
@@ -273,6 +273,8 @@ export const portfolioContent: Record<'en' | 'th', PortfolioContent> = {
     },
     controls: { english: 'EN', thai: 'TH' },
   },
+  // Thai copy: descriptive words are in Thai. Only proper nouns, product names and
+  // standard acronyms (HL7, HIS, LIS, FHIR, PACS, DICOM, ICU, OPD, UAT, TOR) stay in English.
   th: {
     navItems: [
       { label: 'จุดแข็ง', href: '#bring' },
@@ -284,10 +286,10 @@ export const portfolioContent: Record<'en' | 'th', PortfolioContent> = {
     ],
     resumeButton: 'CV',
     hero: {
-      name: NAME,
-      headline: HEADLINE,
+      name: 'ณนัทธ์ เลิศมหาเกียรติ',
+      headline: 'หัวหน้าแพลตฟอร์มระบบคลินิกและการเชื่อมต่อระบบ',
       summary:
-        'ผู้นำด้านเทคโนโลยีสุขภาพ ประสบการณ์ด้านซอฟต์แวร์และ integration กว่า 18 ปี โดยกว่า 8 ปีอยู่ในโรงพยาบาลไทย ผมออกแบบ ดูแล และพัฒนาแพลตฟอร์มที่เชื่อมอุปกรณ์ข้างเตียง ระบบทางคลินิก และ HIS และรับผิดชอบต่อเนื่องหลัง go-live',
+        'ผู้นำด้านเทคโนโลยีสุขภาพ ประสบการณ์ด้านซอฟต์แวร์และการเชื่อมต่อระบบกว่า 18 ปี โดยกว่า 8 ปีอยู่ในโรงพยาบาลไทย ผมออกแบบ ดูแล และพัฒนาแพลตฟอร์มที่เชื่อมอุปกรณ์ข้างเตียง ระบบทางคลินิก และ HIS และรับผิดชอบต่อเนื่องหลังเปิดใช้งานจริง',
       location: 'กรุงเทพฯ ประเทศไทย',
       cvCta: 'ดาวน์โหลด CV',
       contactCta: 'ติดต่อ',
@@ -295,7 +297,7 @@ export const portfolioContent: Record<'en' | 'th', PortfolioContent> = {
       highlightsTitle: 'ผลงานเด่น',
       highlights: [
         'รับผิดชอบระบบทางคลินิกในห้องผ่าตัดกว่า 60 ห้อง และเคสผ่าตัดกว่า 120,000 เคส',
-        'สร้างและดูแล middleware ที่เชื่อมระบบทางคลินิกและอุปกรณ์ที่แยกส่วนกันเข้ากับแพลตฟอร์มของโรงพยาบาล',
+        'สร้างและดูแลมิดเดิลแวร์ที่เชื่อมระบบทางคลินิกและอุปกรณ์ที่แยกส่วนกันเข้ากับแพลตฟอร์มของโรงพยาบาล',
         'นำโครงการย้ายข้อมูลทางคลินิกจากระบบเดิม',
       ],
       twin: {
@@ -304,7 +306,7 @@ export const portfolioContent: Record<'en' | 'th', PortfolioContent> = {
       },
     },
     stats: [
-      { value: '18+', label: 'ปีในงานซอฟต์แวร์และ integration' },
+      { value: '18+', label: 'ปีในงานซอฟต์แวร์และการเชื่อมต่อระบบ' },
       { value: '8+', label: 'ปีในโรงพยาบาลไทย' },
       { value: '60+', label: 'ห้องผ่าตัด' },
       { value: '120,000+', label: 'เคสผ่าตัด' },
@@ -315,32 +317,35 @@ export const portfolioContent: Record<'en' | 'th', PortfolioContent> = {
       rows: [
         {
           area: 'การปฏิบัติการและความพร้อมใช้งาน',
-          evidence: 'ระบบห้องผ่าตัด 24/7: แนวทางกู้คืนระบบ, health check และการเสริมเสถียรภาพ',
+          evidence: 'ระบบห้องผ่าตัดตลอด 24 ชั่วโมง: แนวทางกู้คืนระบบ การตรวจสอบสถานะระบบ และการเสริมเสถียรภาพ',
         },
         {
-          area: 'System integration',
+          area: 'การเชื่อมต่อระบบ',
           evidence:
-            'HL7 v2 กับ HIS, LIS, Blood Bank; drug order; อุปกรณ์หลายยี่ห้อ; FHIR และ PACS ใน reference build',
+            'HL7 v2 กับ HIS, LIS และธนาคารเลือด; คำสั่งยา; อุปกรณ์หลายยี่ห้อ; FHIR และ PACS ในระบบต้นแบบอ้างอิง',
         },
         {
           area: 'การจัดการข้อมูล',
-          evidence: 'ย้ายข้อมูลเข้า archive, ระเบียนที่ตรวจสอบด้วย hash, retention, backup และ restore ที่ผ่านการตรวจสอบ',
+          evidence:
+            'ย้ายข้อมูลเข้าคลังข้อมูลถาวร ระเบียนที่ตรวจสอบด้วยค่าแฮช การกำหนดอายุการเก็บรักษา และการสำรองและกู้คืนข้อมูลที่ผ่านการตรวจสอบ',
         },
         {
           area: 'ความปลอดภัย',
-          evidence: 'Role-based access, audit trail, tenant isolation, de-identification',
+          evidence:
+            'การกำหนดสิทธิ์ตามบทบาท บันทึกการตรวจสอบย้อนหลัง การแยกข้อมูลระหว่างหน่วยงาน และการลบข้อมูลระบุตัวตน',
         },
         {
-          area: 'Incident และ problem management',
-          evidence: 'หาสาเหตุที่แท้จริงของปัญหาข้อมูลอุปกรณ์สูญหายที่เกิดต่อเนื่อง และแก้ที่ต้นเหตุ ไม่ใช่แค่ restart',
+          area: 'การจัดการเหตุขัดข้องและปัญหา',
+          evidence: 'หาสาเหตุที่แท้จริงของปัญหาข้อมูลอุปกรณ์สูญหายที่เกิดต่อเนื่อง และแก้ที่ต้นเหตุ ไม่ใช่แค่เริ่มระบบใหม่',
         },
         {
           area: 'โครงการและการเปลี่ยนแปลง',
-          evidence: 'Transition, UAT, acceptance gate, คู่มือส่งมอบงาน และการนำเสนอต่อคณะกรรมการแพทย์',
+          evidence:
+            'การเปลี่ยนผ่านระบบ การทดสอบรับระบบโดยผู้ใช้ (UAT) เกณฑ์ตรวจรับงาน คู่มือส่งมอบงาน และการนำเสนอต่อคณะกรรมการแพทย์',
         },
         {
           area: 'การนำทีม',
-          evidence: 'Technical Project Leader นำทีมสหสาขาทั้งฝั่งโรงพยาบาลและ vendor',
+          evidence: 'หัวหน้าโครงการด้านเทคนิค นำทีมสหสาขาทั้งฝั่งโรงพยาบาลและผู้จำหน่ายระบบ',
         },
       ],
     },
@@ -350,69 +355,69 @@ export const portfolioContent: Record<'en' | 'th', PortfolioContent> = {
       rows: [
         {
           area: 'การประสานงานผู้มีส่วนได้ส่วนเสีย',
-          evidence: 'เป็นตัวกลางระหว่างผู้บริหารโรงพยาบาล แพทย์ พยาบาล ทีมไอที วิศวกรชีวการแพทย์ และ vendor',
+          evidence: 'เป็นตัวกลางระหว่างผู้บริหารโรงพยาบาล แพทย์ พยาบาล ทีมไอที วิศวกรชีวการแพทย์ และผู้จำหน่ายระบบ',
         },
         {
-          area: 'TOR และการบริหาร vendor',
-          evidence: 'เขียน TOR ตรวจสอบข้อเสนอของ vendor และกำกับให้ vendor ผ่าน acceptance gate',
+          area: 'TOR และการบริหารผู้จำหน่ายระบบ',
+          evidence: 'เขียน TOR ตรวจสอบข้อเสนอของผู้จำหน่ายระบบ และกำกับให้ผ่านเกณฑ์ตรวจรับงาน',
         },
         {
-          area: 'Requirement และการตัดสินใจ',
-          evidence: 'แปลงความต้องการทางคลินิกเป็น requirement ที่ชัดเจน และตัดสินใจเรื่องขอบเขตและลำดับความสำคัญ',
+          area: 'ความต้องการและการตัดสินใจ',
+          evidence: 'แปลงความต้องการทางคลินิกเป็นข้อกำหนดที่ชัดเจน และตัดสินใจเรื่องขอบเขตและลำดับความสำคัญ',
         },
         {
-          area: 'การบริหาร backlog',
-          evidence: 'ดูแลและจัดลำดับ backlog ของผลิตภัณฑ์ งาน integration และงาน support',
+          area: 'การบริหารรายการงาน',
+          evidence: 'ดูแลและจัดลำดับรายการงานของผลิตภัณฑ์ งานเชื่อมต่อระบบ และงานสนับสนุน',
         },
         {
           area: 'การบริหารทีม',
-          evidence: 'นำทีมสหสาขาทั้งฝั่งโรงพยาบาลและ vendor ตั้งแต่วางแผนจนถึง go-live และ support',
+          evidence: 'นำทีมสหสาขาทั้งฝั่งโรงพยาบาลและผู้จำหน่ายระบบ ตั้งแต่วางแผนจนถึงเปิดใช้งานจริงและงานสนับสนุน',
         },
         {
           area: 'การฝึกอบรมและส่งมอบงาน',
-          evidence: 'ฝึกอบรมผู้ใช้งานและทีม support และเขียนคู่มือส่งมอบงานที่ใช้งานได้จริง',
+          evidence: 'ฝึกอบรมผู้ใช้งานและทีมสนับสนุน และเขียนคู่มือส่งมอบงานที่ใช้งานได้จริง',
         },
       ],
     },
     platforms: {
-      eyebrow: 'Platform portfolio',
+      eyebrow: 'ผลงานแพลตฟอร์ม',
       title: 'ทุกแพลตฟอร์มแสดงสถานะตามจริง',
       note: 'ภาพประกอบเป็นภาพวาด ไม่ใช่ภาพหน้าจอจริง จึงไม่มีข้อมูลผู้ป่วย ส่วนภาพ Wallflower เป็นภาพหน้าจอจริงของข้อมูลสังเคราะห์',
       artLabel: 'ภาพประกอบ',
       rows: [
         {
-          platform: 'OT charting + device middleware',
+          platform: 'ระบบบันทึกในห้องผ่าตัด + มิดเดิลแวร์อุปกรณ์',
           purpose: 'บันทึกวิสัญญีร่วมกับอุปกรณ์หลายยี่ห้อ (GE, Dräger, Philips, B. Braun)',
-          status: 'Production ในห้องผ่าตัดโรงพยาบาล',
+          status: 'ใช้งานจริงในห้องผ่าตัดโรงพยาบาล',
           tone: 'live',
         },
         {
-          platform: 'Drug order integration',
+          platform: 'การเชื่อมต่อคำสั่งยา',
           purpose: 'ระบบไตเทียมเชื่อมกับ HIS',
           status: 'ส่งมอบแล้ว',
           tone: 'live',
         },
         {
-          platform: 'Legacy Migration Project',
-          purpose: 'ย้ายและรวมระเบียนจากระบบเดิมเข้าสู่ archive ใหม่บน PostgreSQL',
+          platform: 'โครงการย้ายข้อมูลระบบเดิม',
+          purpose: 'ย้ายและรวมระเบียนจากระบบเดิมเข้าสู่คลังข้อมูลใหม่บน PostgreSQL',
           status: 'กำลังติดตั้ง',
           tone: 'progress',
         },
         {
-          platform: 'Radiology AI Support',
+          platform: 'ระบบสนับสนุน AI ด้านรังสีวิทยา',
           purpose: 'วิเคราะห์ภาพ DICOM เชื่อมกับ PACS',
-          status: 'Pre-pilot',
+          status: 'ก่อนนำร่อง',
           tone: 'progress',
         },
         {
-          platform: 'BDMS (confidential)',
+          platform: 'BDMS (ข้อมูลลับ)',
           purpose: 'ที่ปรึกษาด้านแพลตฟอร์มโรงพยาบาล รายละเอียดอยู่ภายใต้ข้อตกลงรักษาความลับ',
           status: 'กำลังดำเนินการ',
           tone: 'progress',
         },
         {
           platform: 'Wallflower',
-          purpose: 'แบบจำลองการทำงานหนึ่งวันของโรงพยาบาลและ digital twin เป็น demo สาธารณะ',
+          purpose: 'แบบจำลองการทำงานหนึ่งวันของโรงพยาบาลและแบบจำลองดิจิทัลของอาคาร เปิดให้ทดลองใช้แบบสาธารณะ',
           status: 'ข้อมูลสังเคราะห์เท่านั้น',
           tone: 'demo',
         },
@@ -423,32 +428,32 @@ export const portfolioContent: Record<'en' | 'th', PortfolioContent> = {
       title: 'กว่า 18 ปี จากซอฟต์แวร์อุตสาหกรรมสู่แพลตฟอร์มโรงพยาบาล',
       roles: [
         {
-          organization: 'Independent Healthcare Systems Consultant',
-          role: 'Product, Integration & Platform Lead',
+          organization: 'ที่ปรึกษาอิสระด้านระบบสุขภาพ',
+          role: 'หัวหน้าด้านผลิตภัณฑ์ การเชื่อมต่อระบบ และแพลตฟอร์ม',
           period: 'มิถุนายน 2025 – ปัจจุบัน',
           bullets: [
-            'ออกแบบและสร้างผลิตภัณฑ์และ integration ครอบคลุมเกือบทั้งโรงพยาบาล: patient access, OPD, ห้องผ่าตัดและ ICU, ห้องปฏิบัติการและ pathology AI, รังสีวิทยาและ PACS, เภสัชกรรม, billing, HR และ ERP',
-            'ส่งมอบ integration และการย้ายข้อมูลเข้าสู่ระบบโรงพยาบาลที่ใช้งานจริง ตั้งแต่ requirement จนถึง acceptance และ support',
-            'แก้ปัญหาที่เกิดซ้ำที่ต้นเหตุ ไม่ใช่ด้วยการ restart',
-            'ตรวจสอบข้อเสนอของ vendor และเขียนเอกสารปฏิบัติงานที่โรงพยาบาลใช้จริง',
+            'ออกแบบและสร้างผลิตภัณฑ์และการเชื่อมต่อระบบครอบคลุมเกือบทั้งโรงพยาบาล: การเข้าถึงบริการของผู้ป่วย OPD ห้องผ่าตัดและ ICU ห้องปฏิบัติการและ AI ด้านพยาธิวิทยา รังสีวิทยาและ PACS เภสัชกรรม การเรียกเก็บเงิน งานบุคคล และ ERP',
+            'ส่งมอบการเชื่อมต่อระบบและการย้ายข้อมูลเข้าสู่ระบบโรงพยาบาลที่ใช้งานจริง ตั้งแต่เก็บความต้องการจนถึงตรวจรับงานและงานสนับสนุน',
+            'แก้ปัญหาที่เกิดซ้ำที่ต้นเหตุ ไม่ใช่ด้วยการเริ่มระบบใหม่',
+            'ตรวจสอบข้อเสนอของผู้จำหน่ายระบบ และเขียนเอกสารปฏิบัติงานที่โรงพยาบาลใช้จริง',
           ],
         },
         {
           organization: 'Dräger Medical (Thailand) Ltd.',
-          role: 'Clinical IT Specialist | Medical Device Integration Expert | Technical Project Leader',
+          role: 'ผู้เชี่ยวชาญไอทีทางคลินิก | ผู้เชี่ยวชาญการเชื่อมต่ออุปกรณ์การแพทย์ | หัวหน้าโครงการด้านเทคนิค',
           period: '2017 – 2025',
           bullets: [
-            'Technical Project Leader ในการติดตั้งระบบข้อมูลวิสัญญีให้โรงพยาบาลขนาดใหญ่ของไทย ตั้งแต่วางแผนจนถึง go-live และ support',
-            'นำทีมไอทีโรงพยาบาล วิศวกรชีวการแพทย์ บุคลากรทางคลินิก และ vendor ตลอดช่วง integration, testing และ go-live',
-            'ดูแล HL7 interface (ADT, DFT, observation) และแก้ incident ที่เกิดขึ้นจริงในห้องผ่าตัด',
+            'หัวหน้าโครงการด้านเทคนิคในการติดตั้งระบบข้อมูลวิสัญญีให้โรงพยาบาลขนาดใหญ่ของไทย ตั้งแต่วางแผนจนถึงเปิดใช้งานจริงและงานสนับสนุน',
+            'นำทีมไอทีโรงพยาบาล วิศวกรชีวการแพทย์ บุคลากรทางคลินิก และผู้จำหน่ายระบบ ตลอดช่วงการเชื่อมต่อระบบ การทดสอบ และการเปิดใช้งานจริง',
+            'ดูแลอินเทอร์เฟซ HL7 (ADT, DFT และผลการตรวจวัด) และแก้เหตุขัดข้องที่เกิดขึ้นจริงในห้องผ่าตัด',
           ],
         },
         {
           organization: 'TTCL Public Company Limited',
-          role: 'IT Engineer | Software Developer | Project Implementation Specialist',
+          role: 'วิศวกรไอที | นักพัฒนาซอฟต์แวร์ | ผู้เชี่ยวชาญการติดตั้งโครงการ',
           period: '2007 – 2017',
           bullets: [
-            'พัฒนาและส่งมอบซอฟต์แวร์สำหรับงานอุตสาหกรรม โรงไฟฟ้า และโรงงานเคมี ในสภาพแวดล้อมแบบ mission-critical',
+            'พัฒนาและส่งมอบซอฟต์แวร์สำหรับงานอุตสาหกรรม โรงไฟฟ้า และโรงงานเคมี ในสภาพแวดล้อมที่ระบบหยุดชะงักไม่ได้',
           ],
         },
       ],
@@ -464,8 +469,12 @@ export const portfolioContent: Record<'en' | 'th', PortfolioContent> = {
     skills: {
       eyebrow: 'ทักษะ',
       title: 'ทักษะทางเทคนิค การศึกษา และภาษา',
-      groups: skillGroups(['Interoperability', 'ข้อมูลและความปลอดภัย', 'โครงสร้างพื้นฐาน', 'การพัฒนาซอฟต์แวร์']),
-      note: 'ประสบการณ์ด้าน FHIR, PACS และ Kafka มาจาก reference build',
+      groups: skillGroups(['การทำงานร่วมกันของระบบ', 'ข้อมูลและความปลอดภัย', 'โครงสร้างพื้นฐาน', 'การพัฒนาซอฟต์แวร์'], {
+        Audit: 'การตรวจสอบย้อนหลัง',
+        'Row-level security': 'ความปลอดภัยระดับแถวข้อมูล',
+        'Hospital networks': 'เครือข่ายโรงพยาบาล',
+      }),
+      note: 'ประสบการณ์ด้าน FHIR, PACS และ Kafka มาจากระบบต้นแบบอ้างอิง',
       educationTitle: 'การศึกษา',
       degree: 'วิทยาศาสตรบัณฑิต สาขาเทคโนโลยีสารสนเทศ',
       school: 'สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง (KMITL)',

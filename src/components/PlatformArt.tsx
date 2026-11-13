@@ -7,12 +7,19 @@
  * switched off when the visitor prefers reduced motion.
  */
 
+import type { Locale } from '../types/portfolio'
+
+const WORDS: Record<Locale, { events: string; dialysis: string; order: string; legacy: string; archive: string }> = {
+  en: { events: 'events', dialysis: 'DIALYSIS', order: 'drug order', legacy: 'LEGACY', archive: 'ARCHIVE · POSTGRESQL' },
+  th: { events: 'เหตุการณ์', dialysis: 'ไตเทียม', order: 'คำสั่งยา', legacy: 'ระบบเดิม', archive: 'คลังข้อมูล · PostgreSQL' },
+}
+
 export type PlatformArtKind = 'chart' | 'order' | 'archive' | 'imaging' | 'locked' | 'twin'
 
 const HR_LINE = 'M12,62 L40,58 L64,66 L92,52 L118,60 L146,48 L172,56 L200,50 L228,58 L256,46 L284,54 L308,50'
 const SPO2_LINE = 'M12,34 L48,33 L84,36 L120,32 L156,34 L192,31 L228,35 L264,32 L308,33'
 
-function ChartArt() {
+function ChartArt({ locale }: { locale: Locale }) {
   return (
     <>
       {[30, 54, 78, 102].map((y) => (
@@ -27,13 +34,13 @@ function ChartArt() {
       <g className="fill-muted font-mono text-[8px]">
         <text x="12" y="16">HR</text>
         <text x="34" y="16">SpO2</text>
-        <text x="12" y="132">events</text>
+        <text x="12" y="132">{WORDS[locale].events}</text>
       </g>
     </>
   )
 }
 
-function OrderArt() {
+function OrderArt({ locale }: { locale: Locale }) {
   return (
     <>
       <rect x="22" y="46" width="86" height="48" className="fill-raised stroke-line" />
@@ -46,26 +53,26 @@ function OrderArt() {
       </g>
       <g className="font-mono text-[9px]">
         <text x="65" y="74" textAnchor="middle" className="fill-ink">
-          DIALYSIS
+          {WORDS[locale].dialysis}
         </text>
         <text x="255" y="74" textAnchor="middle" className="fill-accent">
           HIS
         </text>
         <text x="160" y="112" textAnchor="middle" className="fill-muted text-[8px]">
-          drug order
+          {WORDS[locale].order}
         </text>
       </g>
     </>
   )
 }
 
-function ArchiveArt() {
+function ArchiveArt({ locale }: { locale: Locale }) {
   const rows = [0, 1, 2, 3, 4]
   return (
     <>
       <g className="font-mono text-[8px] fill-muted">
-        <text x="24" y="20">LEGACY</text>
-        <text x="186" y="20">ARCHIVE · POSTGRESQL</text>
+        <text x="24" y="20">{WORDS[locale].legacy}</text>
+        <text x="186" y="20">{WORDS[locale].archive}</text>
       </g>
       {rows.map((row) => (
         <rect key={row} x="24" y={28 + row * 16} width="96" height="10" className="fill-line" />
@@ -136,7 +143,7 @@ function LockedArt() {
   )
 }
 
-export function PlatformArt({ kind, label }: { kind: PlatformArtKind; label: string }) {
+export function PlatformArt({ kind, label, locale }: { kind: PlatformArtKind; label: string; locale: Locale }) {
   if (kind === 'twin') {
     return (
       <img
@@ -155,9 +162,9 @@ export function PlatformArt({ kind, label }: { kind: PlatformArtKind; label: str
       aria-label={label}
       className="block aspect-[16/7] w-full border-b border-line bg-bg/60"
     >
-      {kind === 'chart' ? <ChartArt /> : null}
-      {kind === 'order' ? <OrderArt /> : null}
-      {kind === 'archive' ? <ArchiveArt /> : null}
+      {kind === 'chart' ? <ChartArt locale={locale} /> : null}
+      {kind === 'order' ? <OrderArt locale={locale} /> : null}
+      {kind === 'archive' ? <ArchiveArt locale={locale} /> : null}
       {kind === 'imaging' ? <ImagingArt /> : null}
       {kind === 'locked' ? <LockedArt /> : null}
     </svg>

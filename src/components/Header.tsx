@@ -67,7 +67,15 @@ export function Header({
             <button
               type="button"
               onClick={() => onThemeChange(theme === 'light' ? 'dark' : 'light')}
-              aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
+              aria-label={
+                locale === 'th'
+                  ? theme === 'light'
+                    ? 'เปลี่ยนเป็นโหมดมืด'
+                    : 'เปลี่ยนเป็นโหมดสว่าง'
+                  : theme === 'light'
+                    ? 'Switch to dark mode'
+                    : 'Switch to light mode'
+              }
               className={iconButton}
             >
               {theme === 'light' ? (
@@ -102,7 +110,7 @@ export function Header({
             <button
               type="button"
               onClick={() => setMobileMenuOpen((open) => !open)}
-              aria-label="Toggle navigation menu"
+              aria-label={locale === 'th' ? 'เปิดหรือปิดเมนู' : 'Toggle navigation menu'}
               aria-expanded={mobileMenuOpen}
               className={`${iconButton} lg:hidden`}
             >
