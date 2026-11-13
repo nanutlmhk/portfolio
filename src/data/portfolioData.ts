@@ -23,7 +23,7 @@ const CLIENTS = [
 ]
 
 // Names only. Add official logo files only once each organization has given permission.
-const HOSPITALS = ['NIT', 'Vimut Hospital', 'Lampang Hospital', 'WIH Hospital']
+const HOSPITALS = ['Neurological Institute of Thailand (NIT)', 'Vimut Hospital', 'Lampang Hospital', 'WIH International Hospital']
 
 const DEVICE_VENDORS = ['Dräger', 'GE HealthCare', 'Philips', 'B. Braun', 'Fresenius', 'Getinge']
 
