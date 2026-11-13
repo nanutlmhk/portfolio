@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react'
 import { Header } from './components/Header'
 import { IntegrationMap } from './components/IntegrationMap'
 import { BulletList, Label, Section, StatusBadge, Tag } from './components/ui'
-import { GITHUB_URL, portfolioContent, RESUME_URL } from './data/portfolioData'
-import type { ContactAction, Locale, NetworkGroup, ThemeMode } from './types/portfolio'
+import { GITHUB_URL, LOGOS, portfolioContent, RESUME_URL } from './data/portfolioData'
+import type { ContactAction, Locale, ThemeMode } from './types/portfolio'
 
 const THEME_KEY = 'portfolio-theme'
 const LOCALE_KEY = 'portfolio-locale'
@@ -33,27 +33,6 @@ function ContactIcon({ kind }: { kind: ContactAction['kind'] }) {
     <svg viewBox="0 0 24 24" className="h-4 w-4 fill-none stroke-current stroke-2">
       <path d="M4 5h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z" strokeLinecap="round" strokeLinejoin="round" />
       <path d="m22 7-10 7L2 7" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  )
-}
-
-function NetworkIcon({ kind }: { kind: NetworkGroup['kind'] }) {
-  const paths: Record<NetworkGroup['kind'], string> = {
-    client: 'M3 21h18M5 21V7l7-4 7 4v14M9 21v-5h6v5M9 10h.01M15 10h.01',
-    hospital: 'M4 21V6a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v15M2 21h20M12 8v6M9 11h6M10 21v-3h4v3',
-    device: 'M3 5h18v11H3zM8 20h8M12 16v4M6 11h3l1.5-3 2.5 5 1.5-2H18',
-  }
-
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      aria-hidden="true"
-      className="h-5 w-5 shrink-0 fill-none stroke-accent"
-      strokeWidth="1.6"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d={paths[kind]} />
     </svg>
   )
 }
@@ -205,15 +184,29 @@ function App() {
               <div key={group.kind}>
                 <Label className="mb-3">{group.label}</Label>
                 <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-                  {group.names.map((name) => (
-                    <li
-                      key={name}
-                      className="flex items-center gap-3 border border-line bg-panel px-4 py-3 text-sm font-medium leading-5 text-ink"
-                    >
-                      <NetworkIcon kind={group.kind} />
-                      {name}
-                    </li>
-                  ))}
+                  {group.names.map((name) =>
+                    LOGOS[name] ? (
+                      <li
+                        key={name}
+                        title={name}
+                        className="logo-tile flex h-24 items-center justify-center border border-line bg-panel px-5 py-4"
+                      >
+                        <img
+                          src={`/logos/${LOGOS[name]}`}
+                          alt={name}
+                          loading="lazy"
+                          className="logo max-h-full max-w-[68%] object-contain"
+                        />
+                      </li>
+                    ) : (
+                      <li
+                        key={name}
+                        className="flex items-center border border-line bg-panel px-4 py-3 text-sm font-medium leading-5 text-ink"
+                      >
+                        {name}
+                      </li>
+                    ),
+                  )}
                 </ul>
               </div>
             ))}

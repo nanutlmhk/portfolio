@@ -22,8 +22,22 @@ const CLIENTS = [
   'Porjai',
 ]
 
-// Names only. Add official logo files only once each organization has given permission.
-const HOSPITALS = ['NIT', 'Vimut Hospital', 'Lampang Hospital', 'WIH Hospital']
+// Logo files live in public/logos as transparent PNG or SVG. Dark mode renders them in one light colour (see .logo in index.css).
+// A name without an entry here is shown as text only.
+export const LOGOS: Record<string, string> = {
+  'Neurological Institute of Thailand (NIT)': 'nit.png',
+  'Vimut Hospital': 'vimut.svg',
+  'Lampang Hospital': 'lampang-hospital.png',
+  'WIH International Hospital': 'wih.png',
+  'Dräger': 'draeger.png',
+  'GE HealthCare': 'ge-healthcare.svg',
+  Philips: 'philips.png',
+  'B. Braun': 'bbraun.png',
+  Fresenius: 'fresenius.svg',
+  Getinge: 'getinge.svg',
+}
+
+const HOSPITALS = ['Neurological Institute of Thailand (NIT)', 'Vimut Hospital', 'Lampang Hospital', 'WIH International Hospital']
 
 const DEVICE_VENDORS = ['Dräger', 'GE HealthCare', 'Philips', 'B. Braun', 'Fresenius', 'Getinge']
 
@@ -191,8 +205,7 @@ export const portfolioContent: Record<'en' | 'th', PortfolioContent> = {
       title: 'Who I have worked with, and the devices I have integrated.',
       groups: [
         { kind: 'client', label: 'Consulting clients', names: CLIENTS },
-        { kind: 'hospital', label: 'Hospitals', names: HOSPITALS },
-        { kind: 'device', label: 'Medical device vendors', names: DEVICE_VENDORS },
+        { kind: 'partner', label: 'Hospitals and medical device vendors', names: [...HOSPITALS, ...DEVICE_VENDORS] },
       ],
     },
     skills: {
@@ -370,8 +383,7 @@ export const portfolioContent: Record<'en' | 'th', PortfolioContent> = {
       title: 'องค์กรที่ผมเคยทำงานด้วย และอุปกรณ์ที่ผมเคยเชื่อมต่อ',
       groups: [
         { kind: 'client', label: 'ลูกค้างานที่ปรึกษา', names: CLIENTS },
-        { kind: 'hospital', label: 'โรงพยาบาล', names: HOSPITALS },
-        { kind: 'device', label: 'ผู้ผลิตอุปกรณ์การแพทย์', names: DEVICE_VENDORS },
+        { kind: 'partner', label: 'โรงพยาบาลและผู้ผลิตอุปกรณ์การแพทย์', names: [...HOSPITALS, ...DEVICE_VENDORS] },
       ],
     },
     skills: {
