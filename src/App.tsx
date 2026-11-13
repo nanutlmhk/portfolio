@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Header } from './components/Header'
-import { IntegrationMap } from './components/IntegrationMap'
+import { HospitalTwin } from './components/HospitalTwin'
 import { BulletList, Label, Section, StatusBadge, Tag } from './components/ui'
 import { GITHUB_URL, LOGOS, portfolioContent, RESUME_URL } from './data/portfolioData'
 import type { ContactAction, Locale, ThemeMode } from './types/portfolio'
@@ -84,7 +84,7 @@ function App() {
 
       <main>
         <section id="home" className="mx-auto max-w-6xl px-4 pb-10 pt-12 sm:px-6 lg:px-8 lg:pt-20">
-          <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:gap-12">
+          <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12">
             <div className="min-w-0">
               <h1 className="text-4xl font-semibold leading-tight tracking-tight text-ink sm:text-5xl">
                 {hero.name}
@@ -114,7 +114,7 @@ function App() {
               <p className="mt-6 font-mono text-xs text-muted">{hero.location}</p>
             </div>
 
-            <IntegrationMap labels={hero.mapLabels} />
+            <HospitalTwin note={hero.twin.note} legend={hero.twin.legend} />
           </div>
 
           <dl className="mt-12 grid grid-cols-2 border-l border-t border-line bg-panel lg:grid-cols-4">

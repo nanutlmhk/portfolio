@@ -64,10 +64,9 @@ export type PortfolioContent = {
     githubCta: string
     highlightsTitle: string
     highlights: string[]
-    mapLabels: {
-      devices: string
-      platform: string
-      systems: string
+    twin: {
+      note: string
+      legend: { staff: string; patient: string; journey: string }
     }
   }
   stats: Stat[]
