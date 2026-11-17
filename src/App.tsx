@@ -191,15 +191,30 @@ function App() {
         </section>
 
         <Section id="about" index="01" eyebrow={about.eyebrow} title={about.title}>
-          <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-            <div>
+          <div className="grid items-start gap-8 md:grid-cols-[240px_1fr] lg:grid-cols-[280px_1fr]">
+            <div className="relative mx-auto w-full max-w-[280px] md:mx-0">
+              <img
+                src="/photo/nanut.jpg"
+                alt={about.photoAlt}
+                width={720}
+                height={900}
+                loading="lazy"
+                className="portrait block aspect-[4/5] w-full border border-line object-cover"
+              />
+              <span aria-hidden="true" className="portrait-corner portrait-corner-tl" />
+              <span aria-hidden="true" className="portrait-corner portrait-corner-br" />
+            </div>
+            <div className="max-w-2xl">
               {about.paragraphs.map((paragraph) => (
                 <p key={paragraph} className="text-base leading-7 text-body [&:not(:first-child)]:mt-4">
                   {paragraph}
                 </p>
               ))}
             </div>
-            <div className="stagger grid gap-4 sm:grid-cols-2">
+          </div>
+
+          <div className="mt-10">
+            <div className="stagger grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {about.principles.map((item) => (
                 <article key={item.title} className="border border-line border-l-2 border-l-accent bg-panel p-4 sm:p-5">
                   <h3 className="text-base font-semibold text-ink">{item.title}</h3>

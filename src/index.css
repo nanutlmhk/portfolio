@@ -201,6 +201,43 @@ body {
   transition-delay: 0.42s;
 }
 
+/* Portrait in the About section: accent corner marks that draw in. */
+.portrait-corner {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  border: 0 solid var(--accent);
+  opacity: 0.9;
+  pointer-events: none;
+  transition:
+    width 0.35s ease,
+    height 0.35s ease;
+}
+
+.portrait-corner-tl {
+  top: -7px;
+  left: -7px;
+  border-top-width: 2px;
+  border-left-width: 2px;
+}
+
+.portrait-corner-br {
+  right: -7px;
+  bottom: -7px;
+  border-right-width: 2px;
+  border-bottom-width: 2px;
+}
+
+.portrait:hover + .portrait-corner,
+.portrait:hover + .portrait-corner + .portrait-corner {
+  width: 44px;
+  height: 44px;
+}
+
+:root.dark .portrait {
+  filter: saturate(0.92) brightness(0.96);
+}
+
 /* Platform card thumbnails (PlatformArt.tsx). */
 .art-card:hover {
   border-color: var(--accent);

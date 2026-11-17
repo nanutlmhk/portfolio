@@ -88,6 +88,7 @@ export type PortfolioContent = {
   about: {
     eyebrow: string
     title: string
+    photoAlt: string
     paragraphs: string[]
     principles: { title: string; text: string }[]
   }

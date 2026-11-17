@@ -138,6 +138,7 @@ export const portfolioContent: Record<'en' | 'th', PortfolioContent> = {
     about: {
       eyebrow: 'About me',
       title: 'Eighteen years of building systems that have to keep working.',
+      photoAlt: 'Portrait of Nanut Lertmahakiat',
       paragraphs: [
         'I started in industrial software in 2007, building systems for power and chemical plants where downtime was not an option. In 2017 I moved into hospitals with Dräger, leading anesthesia information system projects across major Thai hospitals.',
         'Since June 2025 I have worked independently for hospitals and healthcare companies, designing and delivering integrations and data migrations into live systems. I am based in Bangkok and work in Thai and English.',
@@ -421,6 +422,7 @@ export const portfolioContent: Record<'en' | 'th', PortfolioContent> = {
     about: {
       eyebrow: 'เกี่ยวกับผม',
       title: 'สิบแปดปีของการสร้างระบบที่ต้องใช้งานได้ต่อเนื่อง',
+      photoAlt: 'ภาพถ่ายของณนัทธ์ เลิศมหาเกียรติ',
       paragraphs: [
         'ผมเริ่มงานด้านซอฟต์แวร์สำหรับงานอุตสาหกรรมในปี 2007 สร้างระบบให้โรงไฟฟ้าและโรงงานเคมีที่หยุดชะงักไม่ได้ จากนั้นในปี 2017 ย้ายเข้าสู่วงการโรงพยาบาลกับ Dräger นำโครงการติดตั้งระบบข้อมูลวิสัญญีให้โรงพยาบาลขนาดใหญ่ของไทย',
         'ตั้งแต่มิถุนายน 2025 ผมทำงานอิสระให้โรงพยาบาลและบริษัทด้านสุขภาพ ออกแบบและส่งมอบการเชื่อมต่อระบบและการย้ายข้อมูลเข้าสู่ระบบที่ใช้งานจริง อาศัยอยู่ในกรุงเทพฯ และทำงานได้ทั้งภาษาไทยและอังกฤษ',
