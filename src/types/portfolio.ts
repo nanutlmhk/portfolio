@@ -66,6 +66,7 @@ export type PortfolioContent = {
   hero: {
     name: string
     headline: string
+    tagline: string
     summary: string
     location: string
     openTo: string

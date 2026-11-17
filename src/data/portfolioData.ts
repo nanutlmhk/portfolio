@@ -78,6 +78,7 @@ export const portfolioContent: Record<'en' | 'th', PortfolioContent> = {
     hero: {
       name: NAME,
       headline: HEADLINE,
+      tagline: 'I bring technology and AI into real clinical workflow, with results you can see before you invest.',
       summary:
         'Healthcare technology leader with 18+ years in software and integration, 8+ in Thai hospitals. I design, run and improve the platforms connecting bedside devices, clinical systems and the HIS, and I stay accountable for them after go-live.',
       location: 'Bangkok, Thailand',
@@ -409,6 +410,7 @@ export const portfolioContent: Record<'en' | 'th', PortfolioContent> = {
     hero: {
       name: 'ณนัทธ์ เลิศมหาเกียรติ',
       headline: 'ผู้เชี่ยวชาญระบบไอทีโรงพยาบาลและการเชื่อมต่อระบบ',
+      tagline: 'ผมนำเทคโนโลยีและ AI เข้าสู่การทำงานทางคลินิกจริง โดยให้คุณเห็นผลลัพธ์ก่อนตัดสินใจลงทุน',
       summary:
         'ผู้นำด้านเทคโนโลยีสุขภาพ ประสบการณ์ด้านซอฟต์แวร์และการเชื่อมต่อระบบกว่า 18 ปี โดยกว่า 8 ปีอยู่ในโรงพยาบาลไทย ผมออกแบบ ดูแล และพัฒนาแพลตฟอร์มที่เชื่อมอุปกรณ์ข้างเตียง ระบบทางคลินิก และ HIS และรับผิดชอบต่อเนื่องหลังเปิดใช้งานจริง',
       location: 'กรุงเทพฯ ประเทศไทย',
