@@ -153,16 +153,13 @@ function App() {
         <section id="home" className="mx-auto max-w-6xl px-4 pb-10 pt-12 sm:px-6 lg:px-8 lg:pt-20">
           <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12">
             <div className="min-w-0">
-              <h1 className="text-[2rem] font-semibold min-[360px]:text-4xl leading-tight tracking-tight text-ink sm:text-5xl">
-                {hero.name.split(' ').map((part) => (
-                  <span key={part} className="inline-block">
-                    {part}&nbsp;
-                  </span>
-                ))}
-              </h1>
-              <p className="mt-4 font-mono text-sm uppercase tracking-widest text-accent sm:text-base">
+              <p className="text-lg font-semibold tracking-tight text-ink sm:text-xl">{hero.name}</p>
+              <p className="mt-1 font-mono text-xs uppercase tracking-widest text-accent sm:text-sm">
                 {hero.headline}
               </p>
+              <h1 className="mt-6 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
+                {hero.tagline}
+              </h1>
               <p className="mt-6 max-w-xl text-base leading-7 text-body sm:text-lg sm:leading-8">{hero.summary}</p>
 
               <div className="mt-8 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap">
