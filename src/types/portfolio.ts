@@ -119,6 +119,18 @@ export type PortfolioContent = {
     artLabel: string
     rows: PlatformRow[]
   }
+  ai: {
+    eyebrow: string
+    title: string
+    intro: string
+    steps: { title: string; text: string }[]
+    outcomesTitle: string
+    outcomes: string[]
+    limitsTitle: string
+    limits: string
+    cta: string
+    href: string
+  }
   experience: {
     eyebrow: string
     title: string
