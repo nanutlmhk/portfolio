@@ -5,7 +5,7 @@ import { HospitalTwin } from './components/HospitalTwin'
 import { PlatformArt, type PlatformArtKind } from './components/PlatformArt'
 import { BulletList, Label, Section, StatusBadge, Tag } from './components/ui'
 import { GITHUB_URL, LOGOS, portfolioContent, RESUME_URL } from './data/portfolioData'
-import type { ContactAction, Locale, ThemeMode } from './types/portfolio'
+import type { ContactAction, Locale, Offer, ThemeMode } from './types/portfolio'
 
 const THEME_KEY = 'portfolio-theme'
 const LOCALE_KEY = 'portfolio-locale'
@@ -41,6 +41,29 @@ function ContactIcon({ kind }: { kind: ContactAction['kind'] }) {
 
 // One thumbnail per platform card, in the same order as `platforms.rows` in portfolioData.ts.
 const PLATFORM_ART: PlatformArtKind[] = ['chart', 'order', 'archive', 'imaging', 'locked', 'twin']
+
+function OfferCard({ offer }: { offer: Offer }) {
+  return (
+    <article className="art-card flex flex-col border border-line bg-panel">
+      <div className="border-b border-line px-4 py-2.5 font-mono text-xs uppercase tracking-widest text-accent sm:px-5">
+        {offer.tag}
+      </div>
+      <div className="flex flex-1 flex-col p-4 sm:p-5">
+        <h3 className="text-lg font-semibold text-ink">{offer.title}</h3>
+        <p className="mt-2 text-sm leading-6 text-muted">{offer.text}</p>
+        <div className="mt-4">
+          <BulletList items={offer.items} />
+        </div>
+        <a
+          href={offer.href}
+          className="mt-6 self-start bg-accent px-5 py-3 font-mono text-sm font-medium text-on-accent transition hover:opacity-85"
+        >
+          {offer.cta} →
+        </a>
+      </div>
+    </article>
+  )
+}
 
 const secondaryButton =
   'border border-line bg-panel px-5 py-3 text-center font-mono text-sm font-medium text-ink transition hover:border-accent hover:text-accent'
@@ -97,7 +120,7 @@ function App() {
   }, [locale])
 
   const content = portfolioContent[locale]
-  const { hero, bring, management, platforms, experience, clients, skills, contact } = content
+  const { hero, about, bring, management, platforms, experience, work, clients, skills, contact } = content
 
   return (
     <div className="min-h-screen overflow-x-hidden">
@@ -132,7 +155,7 @@ function App() {
                 >
                   {hero.cvCta} ↓
                 </a>
-                <a href="#contact" className={secondaryButton}>
+                <a href="#work" className={secondaryButton}>
                   {hero.contactCta}
                 </a>
                 <a href={GITHUB_URL} target="_blank" rel="noreferrer" className={secondaryButton}>
@@ -140,7 +163,11 @@ function App() {
                 </a>
               </div>
 
-              <p className="mt-6 font-mono text-xs text-muted">{hero.location}</p>
+              <p className="mt-6 flex items-center gap-2 font-mono text-xs text-accent">
+                <span className="pulse-dot h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                {hero.openTo}
+              </p>
+              <p className="mt-2 font-mono text-xs text-muted">{hero.location}</p>
             </div>
 
             <HospitalTwin locale={locale} note={hero.twin.note} legend={hero.twin.legend} />
@@ -163,7 +190,42 @@ function App() {
           </div>
         </section>
 
-        <Section id="bring" index="01" eyebrow={bring.eyebrow} title={bring.title}>
+        <Section id="about" index="01" eyebrow={about.eyebrow} title={about.title}>
+          <div className="grid items-start gap-8 md:grid-cols-[240px_1fr] lg:grid-cols-[280px_1fr]">
+            <div className="relative mx-auto w-full max-w-[280px] md:mx-0">
+              <img
+                src="/photo/nanut.jpg"
+                alt={about.photoAlt}
+                width={720}
+                height={900}
+                loading="lazy"
+                className="portrait block aspect-[4/5] w-full border border-line object-cover"
+              />
+              <span aria-hidden="true" className="portrait-corner portrait-corner-tl" />
+              <span aria-hidden="true" className="portrait-corner portrait-corner-br" />
+            </div>
+            <div className="max-w-2xl">
+              {about.paragraphs.map((paragraph) => (
+                <p key={paragraph} className="text-base leading-7 text-body [&:not(:first-child)]:mt-4">
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-10">
+            <div className="stagger grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {about.principles.map((item) => (
+                <article key={item.title} className="border border-line border-l-2 border-l-accent bg-panel p-4 sm:p-5">
+                  <h3 className="text-base font-semibold text-ink">{item.title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-body">{item.text}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </Section>
+
+        <Section id="bring" index="02" eyebrow={bring.eyebrow} title={bring.title}>
           <div className="stagger grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {bring.rows.map((row, index) => (
               <article key={row.area} className="border border-line bg-panel p-4 sm:p-5">
@@ -175,7 +237,7 @@ function App() {
           </div>
         </Section>
 
-        <Section id="management" index="02" eyebrow={management.eyebrow} title={management.title}>
+        <Section id="management" index="03" eyebrow={management.eyebrow} title={management.title}>
           <div className="stagger grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {management.rows.map((row) => (
               <article key={row.area} className="border border-line border-l-2 border-l-accent bg-panel p-4 sm:p-5">
@@ -211,7 +273,7 @@ function App() {
           </div>
         </Section>
 
-        <Section id="experience" index="04" eyebrow={experience.eyebrow} title={experience.title}>
+        <Section id="experience" index="05" eyebrow={experience.eyebrow} title={experience.title}>
           <ol className="border-l border-line">
             {experience.roles.map((role) => (
               <li key={role.organization} className="relative pb-10 pl-6 last:pb-0 sm:pl-8">
@@ -227,7 +289,29 @@ function App() {
           </ol>
         </Section>
 
-        <Section id="clients" index="05" eyebrow={clients.eyebrow} title={clients.title}>
+        <Section id="work" index="06" eyebrow={work.eyebrow} title={work.title} description={work.intro}>
+          <div className="stagger grid gap-4 lg:grid-cols-2">
+            <OfferCard offer={work.hire} />
+            <OfferCard offer={work.consult} />
+          </div>
+
+          <div className="mt-10">
+            <Label className="mb-4">{work.processTitle}</Label>
+            <ol className="stagger grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {work.process.map((step, index) => (
+                <li key={step.title} className="border border-line bg-panel p-4 sm:p-5">
+                  <p className="font-mono text-xs text-accent">{String(index + 1).padStart(2, '0')}</p>
+                  <h4 className="mt-2 text-base font-semibold text-ink">{step.title}</h4>
+                  <p className="mt-2 text-sm leading-6 text-body">{step.text}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+
+          <p className="mt-6 max-w-3xl text-sm leading-6 text-muted">{work.note}</p>
+        </Section>
+
+        <Section id="clients" index="07" eyebrow={clients.eyebrow} title={clients.title}>
           <div className="grid gap-8">
             {clients.groups.map((group) => (
               <div key={group.kind}>
@@ -262,7 +346,7 @@ function App() {
           </div>
         </Section>
 
-        <Section id="skills" index="06" eyebrow={skills.eyebrow} title={skills.title}>
+        <Section id="skills" index="08" eyebrow={skills.eyebrow} title={skills.title}>
           <div className="grid gap-4 lg:grid-cols-[1.3fr_0.7fr]">
             <div className="border border-line bg-panel">
               {skills.groups.map((group) => (
@@ -295,7 +379,7 @@ function App() {
           </div>
         </Section>
 
-        <Section id="contact" index="07" eyebrow={contact.eyebrow} title={contact.title}>
+        <Section id="contact" index="09" eyebrow={contact.eyebrow} title={contact.title}>
           <div className="grid gap-4 md:grid-cols-3">
             {contact.actions.map((action) => (
               <a

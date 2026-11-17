@@ -38,6 +38,15 @@ export type NetworkGroup = {
   names: string[]
 }
 
+export type Offer = {
+  tag: string
+  title: string
+  text: string
+  items: string[]
+  cta: string
+  href: string
+}
+
 export type SkillGroup = {
   area: string
   items: string[]
@@ -59,6 +68,7 @@ export type PortfolioContent = {
     headline: string
     summary: string
     location: string
+    openTo: string
     cvCta: string
     contactCta: string
     githubCta: string
@@ -74,6 +84,23 @@ export type PortfolioContent = {
     eyebrow: string
     title: string
     rows: EvidenceRow[]
+  }
+  about: {
+    eyebrow: string
+    title: string
+    photoAlt: string
+    paragraphs: string[]
+    principles: { title: string; text: string }[]
+  }
+  work: {
+    eyebrow: string
+    title: string
+    intro: string
+    hire: Offer
+    consult: Offer
+    processTitle: string
+    process: { title: string; text: string }[]
+    note: string
   }
   management: {
     eyebrow: string
