@@ -80,6 +80,10 @@ export type PortfolioContent = {
       legend: { staff: string; patient: string; journey: string }
     }
   }
+  meta: {
+    title: string
+    description: string
+  }
   stats: Stat[]
   bring: {
     eyebrow: string
