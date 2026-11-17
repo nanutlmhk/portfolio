@@ -96,6 +96,11 @@ export const portfolioContent: Record<'en' | 'th', PortfolioContent> = {
         legend: { staff: 'Staff', patient: 'Patients', journey: 'One patient journey' },
       },
     },
+    meta: {
+      title: `${NAME} | ${HEADLINE}`,
+      description:
+        'Nanut Lertmahakiat, Clinical Systems and Integration Platform Lead. 18+ years in software and integration, 8+ in Thai hospitals: medical device connectivity, HL7 integration, clinical data migration and platform operations.',
+    },
     stats: [
       { value: '18+', label: 'Years in software and integration' },
       { value: '8+', label: 'Years in Thai hospitals' },
@@ -384,6 +389,11 @@ export const portfolioContent: Record<'en' | 'th', PortfolioContent> = {
         note: 'แบบจำลอง · ข้อมูลสังเคราะห์',
         legend: { staff: 'เจ้าหน้าที่', patient: 'ผู้ป่วย', journey: 'เส้นทางของผู้ป่วยหนึ่งราย' },
       },
+    },
+    meta: {
+      title: 'ณนัทธ์ เลิศมหาเกียรติ | หัวหน้าแพลตฟอร์มระบบคลินิกและการเชื่อมต่อระบบ',
+      description:
+        'ณนัทธ์ เลิศมหาเกียรติ หัวหน้าแพลตฟอร์มระบบคลินิกและการเชื่อมต่อระบบ ประสบการณ์ด้านซอฟต์แวร์และการเชื่อมต่อระบบกว่า 18 ปี โดยกว่า 8 ปีอยู่ในโรงพยาบาลไทย: การเชื่อมต่ออุปกรณ์การแพทย์ การเชื่อมต่อ HL7 การย้ายข้อมูลทางคลินิก และการดูแลแพลตฟอร์ม',
     },
     stats: [
       { value: '18+', label: 'ปีในงานซอฟต์แวร์และการเชื่อมต่อระบบ' },

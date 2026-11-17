@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { RESUME_URL } from '../data/portfolioData'
 import type { Locale, NavItem, ThemeMode } from '../types/portfolio'
 
@@ -13,6 +13,46 @@ type HeaderProps = {
   onThemeChange: (theme: ThemeMode) => void
   locale: Locale
   onLocaleChange: (locale: Locale) => void
+}
+
+// Thin accent line under the header that fills as the page is scrolled.
+function ScrollProgress() {
+  const bar = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    let frame = 0
+    const update = () => {
+      frame = 0
+      const root = document.documentElement
+      const range = root.scrollHeight - root.clientHeight
+      const progress = range > 0 ? Math.min(1, Math.max(0, root.scrollTop / range)) : 0
+      if (bar.current) {
+        bar.current.style.transform = `scaleX(${progress})`
+      }
+    }
+    const onScroll = () => {
+      if (!frame) {
+        frame = window.requestAnimationFrame(update)
+      }
+    }
+    update()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('resize', onScroll)
+
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', onScroll)
+      window.cancelAnimationFrame(frame)
+    }
+  }, [])
+
+  return (
+    <div
+      ref={bar}
+      aria-hidden="true"
+      className="absolute -bottom-px left-0 h-0.5 w-full origin-left scale-x-0 bg-accent"
+    />
+  )
 }
 
 const iconButton =
@@ -149,6 +189,7 @@ export function Header({
           </nav>
         ) : null}
       </div>
+      <ScrollProgress />
     </header>
   )
 }
