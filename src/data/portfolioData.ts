@@ -5,6 +5,7 @@ import type { PortfolioContent, SkillGroup } from '../types/portfolio'
 
 export const RESUME_URL = '/assets/Nanut_Lertmahakiat_CV.pdf'
 export const GITHUB_URL = 'https://github.com/nanutlmhk'
+export const LINKEDIN_URL = 'https://www.linkedin.com/in/nanutlertmahakiat/'
 
 const NAME = 'Nanut Lertmahakiat'
 const HEADLINE = 'Clinical Systems & Integration Platform Lead'
@@ -83,6 +84,7 @@ export const portfolioContent: Record<'en' | 'th', PortfolioContent> = {
       cvCta: 'Download CV',
       contactCta: 'Work with me',
       githubCta: 'GitHub',
+      linkedinCta: 'LinkedIn',
       highlightsTitle: 'Career highlights',
       highlights: [
         'Accountable for clinical systems across 60+ operating theatres and 120,000+ operating theatre cases.',
@@ -337,6 +339,13 @@ export const portfolioContent: Record<'en' | 'th', PortfolioContent> = {
       actions: [
         { kind: 'email', title: 'Email', description: EMAIL, href: `mailto:${EMAIL}`, cta: 'Send email' },
         { kind: 'phone', title: 'Phone', description: PHONE_DISPLAY, href: PHONE_HREF, cta: 'Call' },
+        {
+          kind: 'linkedin',
+          title: 'LinkedIn',
+          description: 'linkedin.com/in/nanutlertmahakiat',
+          href: LINKEDIN_URL,
+          cta: 'Open LinkedIn',
+        },
         { kind: 'github', title: 'GitHub', description: 'github.com/nanutlmhk', href: GITHUB_URL, cta: 'Open GitHub' },
       ],
     },
@@ -364,6 +373,7 @@ export const portfolioContent: Record<'en' | 'th', PortfolioContent> = {
       cvCta: 'ดาวน์โหลด CV',
       contactCta: 'ร่วมงานกับผม',
       githubCta: 'GitHub',
+      linkedinCta: 'LinkedIn',
       highlightsTitle: 'ผลงานเด่น',
       highlights: [
         'รับผิดชอบระบบทางคลินิกในห้องผ่าตัดกว่า 60 ห้อง และเคสผ่าตัดกว่า 120,000 เคส',
@@ -624,6 +634,13 @@ export const portfolioContent: Record<'en' | 'th', PortfolioContent> = {
       actions: [
         { kind: 'email', title: 'อีเมล', description: EMAIL, href: `mailto:${EMAIL}`, cta: 'ส่งอีเมล' },
         { kind: 'phone', title: 'โทรศัพท์', description: PHONE_DISPLAY, href: PHONE_HREF, cta: 'โทร' },
+        {
+          kind: 'linkedin',
+          title: 'LinkedIn',
+          description: 'linkedin.com/in/nanutlertmahakiat',
+          href: LINKEDIN_URL,
+          cta: 'เปิด LinkedIn',
+        },
         { kind: 'github', title: 'GitHub', description: 'github.com/nanutlmhk', href: GITHUB_URL, cta: 'เปิด GitHub' },
       ],
     },

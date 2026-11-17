@@ -4,13 +4,21 @@ import { CountUp } from './components/CountUp'
 import { HospitalTwin } from './components/HospitalTwin'
 import { PlatformArt, type PlatformArtKind } from './components/PlatformArt'
 import { BulletList, Label, Section, StatusBadge, Tag } from './components/ui'
-import { GITHUB_URL, LOGOS, portfolioContent, RESUME_URL } from './data/portfolioData'
+import { GITHUB_URL, LINKEDIN_URL, LOGOS, portfolioContent, RESUME_URL } from './data/portfolioData'
 import type { ContactAction, Locale, Offer, ThemeMode } from './types/portfolio'
 
 const THEME_KEY = 'portfolio-theme'
 const LOCALE_KEY = 'portfolio-locale'
 
 function ContactIcon({ kind }: { kind: ContactAction['kind'] }) {
+  if (kind === 'linkedin') {
+    return (
+      <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current">
+        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+      </svg>
+    )
+  }
+
   if (kind === 'github') {
     return (
       <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current">
@@ -157,6 +165,9 @@ function App() {
                 </a>
                 <a href="#work" className={secondaryButton}>
                   {hero.contactCta}
+                </a>
+                <a href={LINKEDIN_URL} target="_blank" rel="noreferrer" className={secondaryButton}>
+                  {hero.linkedinCta} ↗
                 </a>
                 <a href={GITHUB_URL} target="_blank" rel="noreferrer" className={secondaryButton}>
                   {hero.githubCta} ↗
@@ -380,13 +391,13 @@ function App() {
         </Section>
 
         <Section id="contact" index="09" eyebrow={contact.eyebrow} title={contact.title}>
-          <div className="grid gap-4 md:grid-cols-3">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {contact.actions.map((action) => (
               <a
                 key={action.kind}
                 href={action.href}
-                target={action.kind === 'github' ? '_blank' : undefined}
-                rel={action.kind === 'github' ? 'noreferrer' : undefined}
+                target={action.kind === 'github' || action.kind === 'linkedin' ? '_blank' : undefined}
+                rel={action.kind === 'github' || action.kind === 'linkedin' ? 'noreferrer' : undefined}
                 className="group border border-line bg-panel p-4 transition hover:border-accent sm:p-5"
               >
                 <span className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-widest text-muted">

@@ -53,7 +53,7 @@ export type SkillGroup = {
 }
 
 export type ContactAction = {
-  kind: 'email' | 'phone' | 'github'
+  kind: 'email' | 'phone' | 'github' | 'linkedin'
   title: string
   description: string
   href: string
@@ -72,6 +72,7 @@ export type PortfolioContent = {
     cvCta: string
     contactCta: string
     githubCta: string
+    linkedinCta: string
     highlightsTitle: string
     highlights: string[]
     twin: {
