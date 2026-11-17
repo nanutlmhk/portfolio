@@ -135,7 +135,7 @@ function App() {
     document.title = content.meta.title
     document.querySelector('meta[name="description"]')?.setAttribute('content', content.meta.description)
   }, [content])
-  const { hero, about, bring, management, platforms, experience, work, clients, skills, contact } = content
+  const { hero, about, bring, management, platforms, ai, experience, work, clients, skills, contact } = content
 
   return (
     <div className="min-h-screen overflow-x-hidden">
@@ -295,7 +295,44 @@ function App() {
           </div>
         </Section>
 
-        <Section id="experience" index="05" eyebrow={experience.eyebrow} title={experience.title}>
+        <Section id="ai" index="05" eyebrow={ai.eyebrow} title={ai.title} description={ai.intro}>
+          <ol className="stagger grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {ai.steps.map((step, index) => (
+              <li key={step.title} className="art-card border border-line bg-panel p-4 sm:p-5">
+                <p className="flex items-center gap-2 font-mono text-xs text-accent">
+                  <span className="pulse-dot h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                  {String(index + 1).padStart(2, '0')}
+                  {index < ai.steps.length - 1 ? (
+                    <svg aria-hidden="true" viewBox="0 0 100 2" preserveAspectRatio="none" className="h-0.5 min-w-0 flex-1">
+                      <line x1="0" y1="1" x2="100" y2="1" className="flow-line stroke-accent" strokeWidth="2" />
+                    </svg>
+                  ) : null}
+                </p>
+                <h3 className="mt-3 text-base font-semibold text-ink">{step.title}</h3>
+                <p className="mt-2 text-sm leading-6 text-body">{step.text}</p>
+              </li>
+            ))}
+          </ol>
+
+          <div className="mt-4 grid gap-4 lg:grid-cols-[1.3fr_0.7fr]">
+            <div className="border border-line border-l-2 border-l-accent bg-panel p-4 sm:p-5">
+              <Label className="mb-3">{ai.outcomesTitle}</Label>
+              <BulletList items={ai.outcomes} />
+              <a
+                href={ai.href}
+                className="mt-6 inline-block bg-accent px-5 py-3 font-mono text-sm font-medium text-on-accent transition hover:opacity-85"
+              >
+                {ai.cta} →
+              </a>
+            </div>
+            <div className="border border-line bg-panel p-4 sm:p-5">
+              <StatusBadge tone="demo">{ai.limitsTitle}</StatusBadge>
+              <p className="mt-3 text-sm leading-6 text-muted">{ai.limits}</p>
+            </div>
+          </div>
+        </Section>
+
+        <Section id="experience" index="06" eyebrow={experience.eyebrow} title={experience.title}>
           <ol className="border-l border-line">
             {experience.roles.map((role) => (
               <li key={role.organization} className="relative pb-10 pl-6 last:pb-0 sm:pl-8">
@@ -311,7 +348,7 @@ function App() {
           </ol>
         </Section>
 
-        <Section id="work" index="06" eyebrow={work.eyebrow} title={work.title} description={work.intro}>
+        <Section id="work" index="07" eyebrow={work.eyebrow} title={work.title} description={work.intro}>
           <div className="stagger grid gap-4 lg:grid-cols-2">
             <OfferCard offer={work.hire} />
             <OfferCard offer={work.consult} />
@@ -333,7 +370,7 @@ function App() {
           <p className="mt-6 max-w-3xl text-sm leading-6 text-muted">{work.note}</p>
         </Section>
 
-        <Section id="clients" index="07" eyebrow={clients.eyebrow} title={clients.title}>
+        <Section id="clients" index="08" eyebrow={clients.eyebrow} title={clients.title}>
           <div className="grid gap-8">
             {clients.groups.map((group) => (
               <div key={group.kind}>
@@ -368,7 +405,7 @@ function App() {
           </div>
         </Section>
 
-        <Section id="skills" index="08" eyebrow={skills.eyebrow} title={skills.title}>
+        <Section id="skills" index="09" eyebrow={skills.eyebrow} title={skills.title}>
           <div className="grid gap-4 lg:grid-cols-[1.3fr_0.7fr]">
             <div className="border border-line bg-panel">
               {skills.groups.map((group) => (
@@ -401,7 +438,7 @@ function App() {
           </div>
         </Section>
 
-        <Section id="contact" index="09" eyebrow={contact.eyebrow} title={contact.title}>
+        <Section id="contact" index="10" eyebrow={contact.eyebrow} title={contact.title}>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {contact.actions.map((action) => (
               <a

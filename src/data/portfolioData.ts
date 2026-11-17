@@ -69,6 +69,7 @@ export const portfolioContent: Record<'en' | 'th', PortfolioContent> = {
       { label: 'About', href: '#about' },
       { label: 'What I bring', href: '#bring' },
       { label: 'Platforms', href: '#platforms' },
+      { label: 'AI', href: '#ai' },
       { label: 'Experience', href: '#experience' },
       { label: 'Work with me', href: '#work' },
       { label: 'Contact', href: '#contact' },
@@ -284,6 +285,42 @@ export const portfolioContent: Record<'en' | 'th', PortfolioContent> = {
         },
       ],
     },
+    ai: {
+      eyebrow: 'AI in clinical workflow',
+      title: 'See what AI will do in your workflow before you invest.',
+      intro:
+        'Technology only pays off when it fits how clinicians actually work. Before a hospital commits budget to AI, I show where it would sit in the real workflow, what will change for staff and patients, and what result to expect, so the decision rests on evidence, not hype.',
+      steps: [
+        {
+          title: 'Start from the workflow',
+          text: 'Map the real steps, people and systems first, then pick one bottleneck worth solving. The problem chooses the tool, not the other way round.',
+        },
+        {
+          title: 'Simulate it in Wallflower',
+          text: 'Run a full hospital day on synthetic data with the AI step in place. Sign in as any role and see what each person would see.',
+        },
+        {
+          title: 'Read the result',
+          text: 'Watch queues, waiting time and staff load as the day runs, then raise the load until a station breaks. You see where the AI output lands and who has to act on it.',
+        },
+        {
+          title: 'Decide with evidence',
+          text: 'Invest, adjust or stop. If it is worth doing, the next step is a small pilot with acceptance gates, integrated with the HIS and PACS.',
+        },
+      ],
+      outcomesTitle: 'What you get',
+      outcomes: [
+        'A clear picture of the workflow after the change: who does what, on which screen, at which step.',
+        'Expected results and the conditions they depend on, stated before any money is spent.',
+        'AI that proposes while a named person confirms, with an owner for every AI function.',
+        'A pilot plan with acceptance gates, or an honest recommendation not to proceed.',
+      ],
+      limitsTitle: 'What Wallflower is not',
+      limits:
+        'Wallflower is a simulation on synthetic data. It is not a medical device, is not clinically validated and is not connected to any hospital system. Its results guide a decision; a real pilot with real acceptance criteria still has to follow.',
+      cta: 'Talk about an AI use case',
+      href: mailto('AI in clinical workflow – Nanut Lertmahakiat'),
+    },
     experience: {
       eyebrow: 'Experience',
       title: '18+ years, from industrial software to hospital platforms.',
@@ -363,6 +400,7 @@ export const portfolioContent: Record<'en' | 'th', PortfolioContent> = {
       { label: 'เกี่ยวกับผม', href: '#about' },
       { label: 'จุดแข็ง', href: '#bring' },
       { label: 'แพลตฟอร์ม', href: '#platforms' },
+      { label: 'AI', href: '#ai' },
       { label: 'ประสบการณ์', href: '#experience' },
       { label: 'ร่วมงานกับผม', href: '#work' },
       { label: 'ติดต่อ', href: '#contact' },
@@ -579,6 +617,42 @@ export const portfolioContent: Record<'en' | 'th', PortfolioContent> = {
           tone: 'demo',
         },
       ],
+    },
+    ai: {
+      eyebrow: 'AI ในขั้นตอนการทำงานทางคลินิก',
+      title: 'เห็นก่อนว่า AI จะทำอะไรในงานจริง แล้วค่อยตัดสินใจลงทุน',
+      intro:
+        'เทคโนโลยีจะคุ้มค่าก็ต่อเมื่อเข้ากับวิธีทำงานจริงของบุคลากรทางการแพทย์ ก่อนที่โรงพยาบาลจะตั้งงบประมาณสำหรับ AI ผมจะแสดงให้เห็นว่า AI จะอยู่ตรงไหนของขั้นตอนการทำงานจริง อะไรจะเปลี่ยนไปสำหรับเจ้าหน้าที่และผู้ป่วย และควรคาดหวังผลลัพธ์อะไร เพื่อให้การตัดสินใจอยู่บนหลักฐาน ไม่ใช่กระแส',
+      steps: [
+        {
+          title: 'เริ่มจากขั้นตอนการทำงาน',
+          text: 'ทำแผนผังขั้นตอน คน และระบบที่ใช้จริงก่อน แล้วเลือกคอขวดหนึ่งจุดที่คุ้มค่าจะแก้ ให้ปัญหาเป็นตัวเลือกเครื่องมือ ไม่ใช่เครื่องมือมาหาปัญหา',
+        },
+        {
+          title: 'จำลองใน Wallflower',
+          text: 'จำลองการทำงานของโรงพยาบาลทั้งวันด้วยข้อมูลสังเคราะห์ โดยมีขั้นตอนของ AI อยู่ในนั้น เข้าใช้งานได้ทุกบทบาท และเห็นสิ่งที่แต่ละคนจะเห็นจริง',
+        },
+        {
+          title: 'ดูผลลัพธ์',
+          text: 'ดูคิว เวลารอ และภาระงานของเจ้าหน้าที่ตลอดวัน แล้วเพิ่มปริมาณงานจนเห็นจุดที่รับไม่ไหว คุณจะเห็นว่าผลจาก AI ไปถึงใคร และใครต้องเป็นผู้ตัดสินใจต่อ',
+        },
+        {
+          title: 'ตัดสินใจจากหลักฐาน',
+          text: 'ลงทุน ปรับแผน หรือหยุด หากคุ้มค่า ขั้นต่อไปคือโครงการนำร่องขนาดเล็กที่มีเกณฑ์ตรวจรับงาน และเชื่อมต่อกับ HIS และ PACS',
+        },
+      ],
+      outcomesTitle: 'สิ่งที่คุณจะได้',
+      outcomes: [
+        'ภาพที่ชัดเจนของขั้นตอนการทำงานหลังการเปลี่ยนแปลง: ใครทำอะไร บนหน้าจอไหน ในขั้นตอนใด',
+        'ผลลัพธ์ที่คาดหวังและเงื่อนไขที่ผลนั้นขึ้นอยู่ด้วย ระบุไว้ก่อนใช้งบประมาณ',
+        'AI ทำหน้าที่เสนอ โดยมีบุคคลที่ระบุชื่อเป็นผู้ยืนยัน และทุกฟังก์ชันของ AI มีผู้รับผิดชอบ',
+        'แผนโครงการนำร่องพร้อมเกณฑ์ตรวจรับงาน หรือคำแนะนำตามจริงว่าไม่ควรทำต่อ',
+      ],
+      limitsTitle: 'สิ่งที่ Wallflower ไม่ใช่',
+      limits:
+        'Wallflower เป็นแบบจำลองที่ใช้ข้อมูลสังเคราะห์ ไม่ใช่เครื่องมือแพทย์ ยังไม่ผ่านการตรวจสอบความถูกต้องทางคลินิก และไม่ได้เชื่อมต่อกับระบบของโรงพยาบาลใด ผลลัพธ์ใช้ประกอบการตัดสินใจเท่านั้น ยังต้องมีโครงการนำร่องจริงพร้อมเกณฑ์ตรวจรับงานตามมา',
+      cta: 'ปรึกษาเรื่องการนำ AI มาใช้',
+      href: mailto('ปรึกษาเรื่อง AI ในขั้นตอนการทำงานทางคลินิก – ณนัทธ์ เลิศมหาเกียรติ'),
     },
     experience: {
       eyebrow: 'ประสบการณ์',
