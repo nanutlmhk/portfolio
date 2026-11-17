@@ -9,6 +9,7 @@ export const GITHUB_URL = 'https://github.com/nanutlmhk'
 const NAME = 'Nanut Lertmahakiat'
 const HEADLINE = 'Clinical Systems & Integration Platform Lead'
 const EMAIL = 'nanut.lertmahakiat@protonmail.com'
+const mailto = (subject: string) => `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}`
 const PHONE_DISPLAY = '(+66) 92-882-8922'
 const PHONE_HREF = 'tel:+66928828922'
 
@@ -64,11 +65,11 @@ const skillGroups = (areas: string[], translated: Record<string, string> = {}): 
 export const portfolioContent: Record<'en' | 'th', PortfolioContent> = {
   en: {
     navItems: [
+      { label: 'About', href: '#about' },
       { label: 'What I bring', href: '#bring' },
-      { label: 'Management', href: '#management' },
       { label: 'Platforms', href: '#platforms' },
       { label: 'Experience', href: '#experience' },
-      { label: 'Skills', href: '#skills' },
+      { label: 'Work with me', href: '#work' },
       { label: 'Contact', href: '#contact' },
     ],
     resumeButton: 'CV',
@@ -78,8 +79,9 @@ export const portfolioContent: Record<'en' | 'th', PortfolioContent> = {
       summary:
         'Healthcare technology leader with 18+ years in software and integration, 8+ in Thai hospitals. I design, run and improve the platforms connecting bedside devices, clinical systems and the HIS, and I stay accountable for them after go-live.',
       location: 'Bangkok, Thailand',
+      openTo: 'Open to full-time roles and consulting projects',
       cvCta: 'Download CV',
-      contactCta: 'Contact',
+      contactCta: 'Work with me',
       githubCta: 'GitHub',
       highlightsTitle: 'Career highlights',
       highlights: [
@@ -132,6 +134,72 @@ export const portfolioContent: Record<'en' | 'th', PortfolioContent> = {
           evidence: 'Technical Project Leader; led multidisciplinary hospital and vendor teams',
         },
       ],
+    },
+    about: {
+      eyebrow: 'About me',
+      title: 'Eighteen years of building systems that have to keep working.',
+      paragraphs: [
+        'I started in industrial software in 2007, building systems for power and chemical plants where downtime was not an option. In 2017 I moved into hospitals with Dräger, leading anesthesia information system projects across major Thai hospitals.',
+        'Since June 2025 I have worked independently for hospitals and healthcare companies, designing and delivering integrations and data migrations into live systems. I am based in Bangkok and work in Thai and English.',
+      ],
+      principles: [
+        {
+          title: 'Fix it at the root',
+          text: 'I trace a failure to its cause and fix that, instead of restarting the system and waiting for it to happen again.',
+        },
+        {
+          title: 'Stay accountable after go-live',
+          text: 'A system is not delivered when it goes live. I stay on for support, recovery paths and stability.',
+        },
+        {
+          title: 'Write it down, hand it over',
+          text: 'Handover guides, operating documents and training, so the team can run the system without me.',
+        },
+        {
+          title: 'Say what is real',
+          text: 'Every platform I show has its real status. Anything with patient data or under confidentiality stays private.',
+        },
+      ],
+    },
+    work: {
+      eyebrow: 'Work with me',
+      title: 'Hire me, or bring me a problem.',
+      intro: 'Two ways to work together. Both start with a short conversation about what you need.',
+      hire: {
+        tag: 'Full-time',
+        title: 'Hire me',
+        text: 'For hospitals and healthcare companies that need someone to own clinical systems and integration platforms.',
+        items: [
+          'Integration platform manager',
+          'Clinical systems manager',
+          'Hospital IT manager',
+          'Technical project lead, healthcare IT',
+        ],
+        cta: 'Email about a role',
+        href: mailto('Role enquiry – Nanut Lertmahakiat'),
+      },
+      consult: {
+        tag: 'Project',
+        title: 'Work with me on a project',
+        text: 'For hospitals, vendors and suppliers who need a specific problem solved and handed over.',
+        items: [
+          'Integration and device connectivity: review or delivery',
+          'Legacy data migration into a new archive',
+          'Vendor proposal and TOR review',
+          'Go-live readiness and stability hardening',
+          'Training, handover guides and operating documents',
+        ],
+        cta: 'Email about a project',
+        href: mailto('Project enquiry – Nanut Lertmahakiat'),
+      },
+      processTitle: 'How we start',
+      process: [
+        { title: 'Listen', text: 'A short call about the decision or problem in front of you.' },
+        { title: 'Diagnose', text: 'I look at the systems, people and vendors involved and say what is really in the way.' },
+        { title: 'Deliver', text: 'A plan with owners and acceptance gates, then the work.' },
+        { title: 'Hand over', text: 'Documentation, training and tests, so your team can run it.' },
+      ],
+      note: 'Rates depend on scope, so I do not publish them. Tell me what you need and I will reply. I cannot discuss confidential client work, and please do not send patient data by email.',
     },
     management: {
       eyebrow: 'Management',
@@ -277,11 +345,11 @@ export const portfolioContent: Record<'en' | 'th', PortfolioContent> = {
   // standard acronyms (HL7, HIS, LIS, FHIR, PACS, DICOM, ICU, OPD, UAT, TOR) stay in English.
   th: {
     navItems: [
+      { label: 'เกี่ยวกับผม', href: '#about' },
       { label: 'จุดแข็ง', href: '#bring' },
-      { label: 'การบริหาร', href: '#management' },
       { label: 'แพลตฟอร์ม', href: '#platforms' },
       { label: 'ประสบการณ์', href: '#experience' },
-      { label: 'ทักษะ', href: '#skills' },
+      { label: 'ร่วมงานกับผม', href: '#work' },
       { label: 'ติดต่อ', href: '#contact' },
     ],
     resumeButton: 'CV',
@@ -291,8 +359,9 @@ export const portfolioContent: Record<'en' | 'th', PortfolioContent> = {
       summary:
         'ผู้นำด้านเทคโนโลยีสุขภาพ ประสบการณ์ด้านซอฟต์แวร์และการเชื่อมต่อระบบกว่า 18 ปี โดยกว่า 8 ปีอยู่ในโรงพยาบาลไทย ผมออกแบบ ดูแล และพัฒนาแพลตฟอร์มที่เชื่อมอุปกรณ์ข้างเตียง ระบบทางคลินิก และ HIS และรับผิดชอบต่อเนื่องหลังเปิดใช้งานจริง',
       location: 'กรุงเทพฯ ประเทศไทย',
+      openTo: 'เปิดรับงานประจำและงานที่ปรึกษาแบบโครงการ',
       cvCta: 'ดาวน์โหลด CV',
-      contactCta: 'ติดต่อ',
+      contactCta: 'ร่วมงานกับผม',
       githubCta: 'GitHub',
       highlightsTitle: 'ผลงานเด่น',
       highlights: [
@@ -348,6 +417,72 @@ export const portfolioContent: Record<'en' | 'th', PortfolioContent> = {
           evidence: 'หัวหน้าโครงการด้านเทคนิค นำทีมสหสาขาทั้งฝั่งโรงพยาบาลและผู้จำหน่ายระบบ',
         },
       ],
+    },
+    about: {
+      eyebrow: 'เกี่ยวกับผม',
+      title: 'สิบแปดปีของการสร้างระบบที่ต้องใช้งานได้ต่อเนื่อง',
+      paragraphs: [
+        'ผมเริ่มงานด้านซอฟต์แวร์สำหรับงานอุตสาหกรรมในปี 2007 สร้างระบบให้โรงไฟฟ้าและโรงงานเคมีที่หยุดชะงักไม่ได้ จากนั้นในปี 2017 ย้ายเข้าสู่วงการโรงพยาบาลกับ Dräger นำโครงการติดตั้งระบบข้อมูลวิสัญญีให้โรงพยาบาลขนาดใหญ่ของไทย',
+        'ตั้งแต่มิถุนายน 2025 ผมทำงานอิสระให้โรงพยาบาลและบริษัทด้านสุขภาพ ออกแบบและส่งมอบการเชื่อมต่อระบบและการย้ายข้อมูลเข้าสู่ระบบที่ใช้งานจริง อาศัยอยู่ในกรุงเทพฯ และทำงานได้ทั้งภาษาไทยและอังกฤษ',
+      ],
+      principles: [
+        {
+          title: 'แก้ที่ต้นเหตุ',
+          text: 'ผมไล่หาสาเหตุของปัญหาและแก้ที่ตรงนั้น ไม่ใช่เริ่มระบบใหม่แล้วรอให้เกิดซ้ำ',
+        },
+        {
+          title: 'รับผิดชอบต่อหลังเปิดใช้งาน',
+          text: 'ระบบยังส่งมอบไม่เสร็จเมื่อเปิดใช้งานจริง ผมอยู่ต่อเพื่อดูแลงานสนับสนุน แนวทางกู้คืนระบบ และเสถียรภาพ',
+        },
+        {
+          title: 'จดไว้และส่งมอบ',
+          text: 'คู่มือส่งมอบงาน เอกสารปฏิบัติงาน และการฝึกอบรม เพื่อให้ทีมดูแลระบบต่อได้โดยไม่ต้องพึ่งผม',
+        },
+        {
+          title: 'บอกตามจริง',
+          text: 'ทุกแพลตฟอร์มที่แสดงมีสถานะตามจริง ส่วนงานที่มีข้อมูลผู้ป่วยหรืออยู่ภายใต้ข้อตกลงรักษาความลับ จะไม่เปิดเผย',
+        },
+      ],
+    },
+    work: {
+      eyebrow: 'ร่วมงานกับผม',
+      title: 'จ้างผม หรือนำปัญหามาปรึกษา',
+      intro: 'ร่วมงานได้สองแบบ ทั้งสองแบบเริ่มจากการพูดคุยสั้น ๆ ว่าคุณต้องการอะไร',
+      hire: {
+        tag: 'งานประจำ',
+        title: 'จ้างเป็นพนักงาน',
+        text: 'สำหรับโรงพยาบาลและบริษัทด้านสุขภาพที่ต้องการผู้ดูแลระบบคลินิกและแพลตฟอร์มการเชื่อมต่อระบบ',
+        items: [
+          'ผู้จัดการแพลตฟอร์มการเชื่อมต่อระบบ',
+          'ผู้จัดการระบบคลินิก',
+          'ผู้จัดการไอทีโรงพยาบาล',
+          'หัวหน้าโครงการด้านเทคนิค สายไอทีสุขภาพ',
+        ],
+        cta: 'อีเมลสอบถามตำแหน่งงาน',
+        href: mailto('สอบถามตำแหน่งงาน – ณนัทธ์ เลิศมหาเกียรติ'),
+      },
+      consult: {
+        tag: 'งานโครงการ',
+        title: 'ว่าจ้างเป็นโครงการ',
+        text: 'สำหรับโรงพยาบาล ผู้จำหน่ายระบบ และบริษัทที่ต้องการแก้ปัญหาเฉพาะเรื่องและส่งมอบงานให้ครบ',
+        items: [
+          'การเชื่อมต่อระบบและอุปกรณ์: ตรวจสอบหรือส่งมอบงาน',
+          'ย้ายข้อมูลจากระบบเดิมเข้าคลังข้อมูลใหม่',
+          'ตรวจสอบข้อเสนอของผู้จำหน่ายระบบและ TOR',
+          'เตรียมความพร้อมก่อนเปิดใช้งานและเสริมเสถียรภาพระบบ',
+          'การฝึกอบรม คู่มือส่งมอบงาน และเอกสารปฏิบัติงาน',
+        ],
+        cta: 'อีเมลสอบถามงานโครงการ',
+        href: mailto('สอบถามงานโครงการ – ณนัทธ์ เลิศมหาเกียรติ'),
+      },
+      processTitle: 'เริ่มต้นอย่างไร',
+      process: [
+        { title: 'ฟัง', text: 'พูดคุยสั้น ๆ เรื่องการตัดสินใจหรือปัญหาที่อยู่ตรงหน้า' },
+        { title: 'วิเคราะห์', text: 'ดูระบบ คน และผู้จำหน่ายที่เกี่ยวข้อง แล้วบอกว่าอะไรคือสิ่งที่ขวางอยู่จริง' },
+        { title: 'ส่งมอบ', text: 'แผนงานที่มีผู้รับผิดชอบและเกณฑ์ตรวจรับงาน จากนั้นลงมือทำ' },
+        { title: 'ส่งต่อ', text: 'เอกสาร การฝึกอบรม และการทดสอบ เพื่อให้ทีมของคุณดูแลระบบต่อได้' },
+      ],
+      note: 'ค่าตอบแทนขึ้นอยู่กับขอบเขตงาน จึงไม่ประกาศราคา บอกผมว่าคุณต้องการอะไร แล้วผมจะตอบกลับ งานของลูกค้าที่เป็นความลับผมไม่สามารถพูดถึงได้ และกรุณาอย่าส่งข้อมูลผู้ป่วยทางอีเมล',
     },
     management: {
       eyebrow: 'การบริหารจัดการ',
