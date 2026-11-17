@@ -3,7 +3,7 @@
 Personal portfolio website for Healthcare IT, Technical Project Lead, System Integration, and Digital Health opportunities.
 
 Live site:
-`https://portfolio-nanutlmhk.vercel.app/`
+`https://www.nanut.space/` (also reachable at `https://portfolio-nanutlmhk.vercel.app/`)
 
 GitHub repo:
 `https://github.com/nanutlmhk/portfolio`
